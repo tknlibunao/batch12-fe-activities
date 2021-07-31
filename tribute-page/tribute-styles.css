@@ -1,0 +1,330 @@
+<!--
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jost:wght@300&display=swap');
+
+@media all and (min-width: 50px)   {  body  { font-size:0.1em;  } }
+@media all and (min-width: 100px)  {  body  { font-size:0.2em;  } }
+@media all and (min-width: 200px)  {  body  { font-size:0.4em;  } }
+@media all and (min-width: 300px)  {  body  { font-size:0.6em;  } }
+@media all and (min-width: 400px)  {  body  { font-size:0.8em;  } }
+@media all and (min-width: 500px)  {  body  { font-size:1.0em;  } }
+@media all and (min-width: 600px)  {  body  { font-size:1.2em;  } }
+@media all and (min-width: 700px)  {  body  { font-size:1.4em;  } }
+@media all and (min-width: 800px)  {  body  { font-size:1.6em;  } }
+@media all and (min-width: 900px)  {  body  { font-size:1.8em;  } }
+@media all and (min-width: 1000px) {  body  { font-size:2.0em;  } }
+@media all and (min-width: 1100px) {  body  { font-size:2.2em;  } }
+@media all and (min-width: 1200px) {  body  { font-size:2.4em;  } }
+@media all and (min-width: 1300px) {  body  { font-size:2.6em;  } }
+@media all and (min-width: 1400px) {  body  { font-size:2.8em;  } }
+@media all and (min-width: 1500px) {  body  { font-size:3.0em;  } }
+@media all and (min-width: 1500px) {  body  { font-size:3.2em;  } }
+@media all and (min-width: 1600px) {  body  { font-size:3.4em;  } }
+@media all and (min-width: 1700px) {  body  { font-size:3.6em;  } }
+
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+#main {
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #24161a;
+}
+
+/* Text Elements */
+
+#title {
+    /* display: inline!important; */
+    color: #ce9643;
+    font-family: 'Cinzel', serif;
+    font-size: 120%;
+    letter-spacing: 0.3em;
+    margin-top: 1em;
+    margin-bottom: -0.1em;
+    
+}
+
+#quote {
+    color: #e6d6bf;
+    font-family: 'Jost', sans-serif;
+    font-size: 37%;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    
+}
+
+#h1-appearance {
+    color:#dd953c;
+}
+
+/* User-defined (Image) */
+
+#img-div {
+    width:75%;
+    display:flex;
+    flex-direction: column;
+    /* As a user, I want the img element to be centered within its parent element. */
+    justify-content: center;
+    align-items: center;
+}
+
+#image {
+    /* As a user, I want the img element to be responsive to resizing, relative to the width of its parent element. */
+    width: 75%;
+    height: auto;
+    max-width: 625px;
+    display: flex;
+    object-fit: cover;
+    border-radius:50%;
+    border: 5px solid rgb(240, 190, 151);
+}
+
+#img-caption {
+    margin: 0.5em;
+    color: #e8bd9a;
+    font-family: 'Jost', sans-serif;
+    font-size:35%;
+    text-align: center;
+}
+
+/* User-defined (Tribute Link) */
+
+#tribute-link:link, #tribute-link:visited {
+    background-color: #52423b;
+    border-radius: 100px;
+    color: white;
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size:40%;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration:none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+  
+#tribute-link:hover, #tribute-link:active {
+background-color: #867265;
+cursor:pointer;
+}
+
+#div-link {
+    width:75%;
+    height:10vh;
+    display:flex;
+    flex-direction: column;
+    /* As a user, I want the img element to be centered within its parent element. */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Decoration Windows Backgrounds */
+
+#div1 {
+    background-image: url(chess.jpg);
+}
+
+#div2 {
+    background-image: url(bh5.jpg);
+}
+
+/* Sections */
+
+#appearance {
+    background-color: #673a15;
+    margin-bottom: -1em;
+}
+
+#psychology {
+    background-color: #2e363a;
+    margin-bottom: -1em;
+}
+
+/* Container Divs for Appearance Images */
+
+#container-outer {
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#container-inner {
+    width: 50vw;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.95;
+}
+
+
+
+/* Default Elements */
+
+header {
+    display: block;
+    background-image: url(bh.jpg!d);
+    background-size: cover;
+    background-color: rgb(92, 85, 84);
+    background-blend-mode: overlay;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+}
+
+section {
+    width: 100%;
+    background-color: #24161a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: flex-start; */
+}
+
+h1 {
+    color: #bf817f;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size:85%;
+    /* text-align: center; */
+    margin-top:0.65em;
+    
+}
+
+h3 {
+    color: #d59770;
+    font-family: 'Gowun Dodum', sans-serif;
+    font-weight: 600;
+    font-size:50%;
+    text-align: left;
+    margin-top:0.5em;
+    
+}
+
+p {
+    color: #e6d6bf;
+    font-family: 'Gowun Dodum', sans-serif;
+    font-style: normal;
+    font-size: 40%;
+    text-align: justify;
+    margin-top:0.5em;
+    margin-bottom: 1em;
+}
+
+/* Sets the width of the articles*/
+
+article {
+    margin-top: 0.5em;
+    width: 75%;
+}
+
+
+
+/* Decoration Windows */
+
+.decor-div {
+    margin-top: 20px;
+    width: 100%;
+    height: 50vh;
+    background-size: cover;
+    background-color: rgb(92, 85, 84);
+    background-blend-mode: overlay;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.outer {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner {
+    max-width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* font-size: 100%; */
+}
+
+/* Appearance Images */
+
+.circle {
+    border-radius: 50%;
+    width: 5em;
+    object-fit: cover;
+    margin-right:0.45em;
+    transition: transform .5s;
+}
+
+.circle:hover {
+    transform: scale(1.25);
+}
+
+/* Navigation Sidebar */
+
+.nav-outer {    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    width:5vw;
+    height:100vh;
+    background-color: #241d1de0;
+    position: fixed;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.nav-inner {
+    display: flex;
+    justify-content: space-evenly;
+    height:70vh;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Navigation Icons */
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    width: 65%;
+    height: auto;
+    max-width: 5vw;
+    object-fit: cover;
+    margin: 0.3em;
+    transition: transform 0.35s;
+}
+
+.icon:hover {
+    transform: scale(1.25);
+}
+
+-->
