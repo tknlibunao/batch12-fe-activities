@@ -292,9 +292,9 @@ article {
     z-index: 10;
     width:5vw;
     height:100vh;
-    background-color: #241d1de0;
+    /* background-color: #241d1de0; */
     position: fixed;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); */
 }
 
 .nav-inner {
