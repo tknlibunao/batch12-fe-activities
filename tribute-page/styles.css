@@ -1,8 +1,11 @@
 <!--
+/* Used fonts */
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@1,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jost:wght@300&display=swap');
+
+/* Responsive screen */
 
 @media all and (min-width: 50px)   {  body  { font-size:0.1em;  } }
 @media all and (min-width: 100px)  {  body  { font-size:0.2em;  } }
@@ -24,6 +27,8 @@
 @media all and (min-width: 1600px) {  body  { font-size:3.4em;  } }
 @media all and (min-width: 1700px) {  body  { font-size:3.6em;  } }
 
+/* Overall */
+
 * {
     margin: 0;
     padding: 0;
@@ -31,45 +36,42 @@
 }
 
 #main {
+    background-color: #24161a;
     width: 100%;
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #24161a;
 }
 
 /* Text Elements */
 
 #title {
-    /* display: inline!important; */
     color: #ce9643;
     font-family: 'Cinzel', serif;
     font-size: 120%;
     letter-spacing: 0.3em;
     margin-top: 1em;
-    margin-bottom: -0.1em;
-    
+    margin-bottom: -0.1em;    
 }
 
 #quote {
     color: #e6d6bf;
     font-family: 'Jost', sans-serif;
     font-size: 37%;
-    text-transform: uppercase;
     letter-spacing: 0.2em;
-    
+    text-transform: uppercase;  
 }
 
 #h1-appearance {
-    color:#dd953c;
+    color: #dd953c;
 }
 
 /* User-defined (Image) */
 
 #img-div {
-    width:75%;
-    display:flex;
+    width: 75%;
+    display: flex;
     flex-direction: column;
     /* As a user, I want the img element to be centered within its parent element. */
     justify-content: center;
@@ -83,45 +85,44 @@
     max-width: 625px;
     display: flex;
     object-fit: cover;
-    border-radius:50%;
+    border-radius: 50%;
     border: 5px solid rgb(240, 190, 151);
 }
 
 #img-caption {
-    margin: 0.5em;
     color: #e8bd9a;
     font-family: 'Jost', sans-serif;
-    font-size:35%;
+    font-size: 35%;
     text-align: center;
+    margin: 0.5em;
 }
 
 /* User-defined (Tribute Link) */
 
 #tribute-link:link, #tribute-link:visited {
     background-color: #52423b;
-    border-radius: 100px;
-    color: white;
+    color: white;    
     font-family: 'Gowun Dodum', sans-serif;
     font-size:40%;
-    padding: 10px 20px;
     text-align: center;
-    text-decoration:none;
+    text-decoration: none;
     display: inline-block;
-    transition-duration: 0.4s;
+    padding: 10px 20px;
+    border-radius: 100px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    transition-duration: 0.4s;
 }
   
 #tribute-link:hover, #tribute-link:active {
-background-color: #867265;
-cursor:pointer;
+    background-color: #867265;
+    cursor: pointer;
 }
 
 #div-link {
-    width:75%;
-    height:10vh;
-    display:flex;
+    width: 75%;
+    height: 10vh;
+    display: flex;
     flex-direction: column;
-    /* As a user, I want the img element to be centered within its parent element. */
     justify-content: center;
     align-items: center;
 }
@@ -129,11 +130,11 @@ cursor:pointer;
 /* Decoration Windows Backgrounds */
 
 #div1 {
-    background-image: url(chess.jpg);
+    background-image: url(./assets/chess.jpg);
 }
 
 #div2 {
-    background-image: url(bh5.jpg);
+    background-image: url(./assets/bh5.jpg);
 }
 
 /* Sections */
@@ -173,7 +174,7 @@ cursor:pointer;
 
 header {
     display: block;
-    background-image: url(bh.jpg!d);
+    background-image: url(./assets/bh.jpg!d);
     background-size: cover;
     background-color: rgb(92, 85, 84);
     background-blend-mode: overlay;
@@ -190,27 +191,23 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: flex-start; */
 }
 
 h1 {
     color: #bf817f;
     font-family: 'Cinzel', serif;
     font-weight: 700;
-    font-size:85%;
-    /* text-align: center; */
-    margin-top:0.65em;
-    
+    font-size: 85%;
+    margin-top: 0.65em;
 }
 
 h3 {
     color: #d59770;
     font-family: 'Gowun Dodum', sans-serif;
     font-weight: 600;
-    font-size:50%;
+    font-size: 50%;
     text-align: left;
-    margin-top:0.5em;
-    
+    margin-top: 0.5em;
 }
 
 p {
@@ -219,7 +216,7 @@ p {
     font-style: normal;
     font-size: 40%;
     text-align: justify;
-    margin-top:0.5em;
+    margin-top: 0.5em;
     margin-bottom: 1em;
 }
 
@@ -235,7 +232,6 @@ article {
 /* Decoration Windows */
 
 .decor-div {
-    margin-top: 20px;
     width: 100%;
     height: 50vh;
     background-size: cover;
@@ -244,6 +240,7 @@ article {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
+    margin-top: 20px;
 }
 
 .outer {
@@ -251,30 +248,29 @@ article {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 .inner {
     max-width: 100%;
     height: 100vh;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     text-align: center;
-    /* font-size: 100%; */
+    margin: 0 auto;
 }
 
 /* Appearance Images */
 
 .circle {
-    border-radius: 50%;
     width: 5em;
+    border-radius: 50%;
     object-fit: cover;
-    margin-right:0.45em;
-    transition: transform .5s;
+    margin-right: 0.45em;
+    transition: transform 0.5s;
 }
 
 .circle:hover {
@@ -284,23 +280,23 @@ article {
 /* Navigation Sidebar */
 
 .nav-outer {    
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 5vw;
+    height: 100vh;
     top: 0px;
     left: 0px;
     z-index: 10;
-    width:5vw;
-    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;  
     /* background-color: #241d1de0; */
-    position: fixed;
     /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); */
 }
 
 .nav-inner {
+    height: 70vh;
     display: flex;
     justify-content: space-evenly;
-    height:70vh;
 }
 
 .nav {
@@ -312,12 +308,11 @@ article {
 /* Navigation Icons */
 
 .icon {
-    display: flex;
-    justify-content: center;
-    align-items:center;
     width: 65%;
     height: auto;
-    max-width: 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     object-fit: cover;
     margin: 0.3em;
     transition: transform 0.35s;
@@ -326,5 +321,4 @@ article {
 .icon:hover {
     transform: scale(1.25);
 }
-
 -->
