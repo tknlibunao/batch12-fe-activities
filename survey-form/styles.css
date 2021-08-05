@@ -189,7 +189,7 @@ h2 {
   background-color: transparent;
 }
 
-#name::placeholder, #email::placeholder, #number::placeholder{
+#name::placeholder, #email::placeholder, #number::placeholder, #cpnumber::placeholder {
   color: #ccffeac4;
   font-family: 'Work Sans', sans-serif;
 }
