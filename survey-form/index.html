@@ -1,213 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Style Sheets -->
-    <link rel="stylesheet" href="./styles.css" />
-
-    <title>Survey Form - Starbucks Raffle</title>
-  </head>
-  <body>
-    <main id="main">
-      <div id="main-container">
-        <div id="intro-container" class="padded">
-          <h2>We really value our customers, that's why we're giving away 30 gift cards for free!*</h2>
-        </div>
-
-        <div id="logo-container" class="padded">
-          <img src="./assets/sb-logo.png" id="logo">
-        </div>
-
-        <div id="header-container" class="padded">
-          <h1 id="title">Starbucks Survey Raffle</h1>
-          <p id="description">Complete this survey and get a chance to win free gift card!</p>
-        </div>
-
-        <div id="form-container">
-          <!-- This should contain the form. -->
-
-          <form action="./success.html" id="survey-form" class="flex-container" method="GET" autocomplete="off">
-            <div id="left-form">
-              <!-- User Story #10: For the name, email, and number input fields inside the form, I can see corresponding labels that describe the purpose of each field with the following ids: id="name-label", id="email-label", and id="number-label" -->
-              <!-- User Story #11: For the name, email, and number input fields, I want to see placeholder text that gives me a description or instructions for each field -->
-              <label for="name" id="name-label">Full Name</label>
-              <br>
-
-              <!-- User Story #4: As a user, I want to be required to enter my name in a field with id="name" (Inside form element) -->
-              <input type="text" name="name" id="name" class="input" placeholder="e.g. Star Bucks" autocomplete="off" required>
-              <br>
-              <br>
-
-              <!-- User Story #10: For the name, email, and number input fields inside the form, I can see corresponding labels that describe the purpose of each field with the following ids: id="name-label", id="email-label", and id="number-label" -->
-              <!-- User Story #11: For the name, email, and number input fields, I want to see placeholder text that gives me a description or instructions for each field -->
-              <label for="email" id="email-label">Email Address</label>
-              <br>
-
-              <!-- User Story #5: As a user, I want to be required to enter an email in a field with id="email" (Inside form element) -->
-              <!-- User Story #6: As a user, I want to see a validation error if I enter an email that is not formatted correctly -->
-              <input type="text" name="email" id="email" class="input" placeholder="e.g. loyal@starbucks.com" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please input a valid address" autocomplete="off" required>
-              <br>
-              <br>
-
-              <!-- User Story #10: For the name, email, and number input fields inside the form, I can see corresponding labels that describe the purpose of each field with the following ids: id="name-label", id="email-label", and id="number-label" -->
-              <!-- User Story #11: For the name, email, and number input fields, I want to see placeholder text that gives me a description or instructions for each field -->
-              <label for="number" id="number-label">Contact Number</label>
-              <br>
-
-              <!-- User Story #7: As a user, I should be able to enter a number in a field with id="number" -->
-              <!-- User Story #8: As a user, if I enter non-numbers in the number input, I want to see an HTML5 validation error -->
-              <!-- User Story #9: As a user, if I enter numbers outside the range of the number input, which are defined by the min and max attributes, I will see an HTML5 validation error -->
-              <input type="text" name="number" id="cpnumber" class="input" placeholder="e.g. 09123456789" pattern="(09)\d{9}$" title="Please follow the correct format" autocomplete="off" required>
-              <br>
-              <br>
-
-              <!-- <div id=number-div> -->
-                  <label for="gender" id="gender-label">Gender</label>
-                  <!-- User Story #12: Inside the form element, I want a select an option from a dropdown that has a corresponding id="dropdown" -->
-                  <select name="gender" id="gender" style="color:whitesmoke" placeholder="Select gender" required>
-                    <option value="" disabled selected hidden class="options">Select gender</option>
-                    <option value="agender" class="options">Agender</option>
-                    <option value="androgynous" class="options">Androgynous</option>
-                    <option value="bigender" class="options">Bigender</option>
-                    <option value="cisgender" class="options">Cisgender</option>
-                    <option value="cis-woman" class="options">Ciswoman</option>
-                    <option value="cis-man" class="options">Cisman</option>
-                    <option value="non-binary" class="options">Non-binary</option>
-                    <option value="gender-fluid" class="options">Gender Fluid</option>
-                    <option value="gender-questioning" class="options">Gender Questioning</option>
-                    <option value="transgender" class="options">Transgender</option>
-                    <option value="trans-woman" class="options">Trans Woman</option>
-                    <option value="trans-man" class="options">Trans Man</option>
-                    <option value="others" class="options">Others</option>
-                  </select>
-
-
-                  <!-- User Story #10: For the name, email, and number input fields inside the form, I can see corresponding labels that describe the purpose of each field with the following ids: id="name-label", id="email-label", and id="number-label" -->
-                  <!-- User Story #11: For the name, email, and number input fields, I want to see placeholder text that gives me a description or instructions for each field -->
-                  <label for="number" id="number-label">Age</label>
-                  <!-- User Story #7: As a user, I should be able to enter a number in a field with id="number" -->
-                  <!-- User Story #8: As a user, if I enter non-numbers in the number input, I want to see an HTML5 validation error -->
-                  <!-- User Story #9: As a user, if I enter numbers outside the range of the number input, which are defined by the min and max attributes, I will see an HTML5 validation error -->
-                  <input type="number" name="number" id="number" class="input2" placeholder="0-120" pattern="[0-9]{3}" min="0" max="120" title="Please input a number within range" autocomplete="off" required>
-                
-
-                
-              <!-- </div> -->
-              
-            </div>
-              
-            <div id="right-form">
-              Rate the following drinks:
-              <p id="scale">1 - lowest to 5 - highest</p>
-
-              <div id="survey-div">
-                <div id="blank" class="question">
-                  
-                </div>
-                <div id="survey-header">
-                  <div>1</div>
-                  <div>2</div>
-                  <div>3</div>
-                  <div>4</div>
-                  <div>5</div>
-                </div>
-                <div id="question-2" class="question">
-                  Americano
-                </div>
-                <div id="choices-2" class="choices">
-                  <input type="radio" name="q2" value="1" required>
-                  <input type="radio" name="q2" value="2" >
-                  <input type="radio" name="q2" value="3" >
-                  <input type="radio" name="q2" value="4" >
-                  <input type="radio" name="q2" value="5" >
-                </div>
-                <div id="question-3" class="question">
-                  Cappuccino
-                </div>
-                <div id="choices-3" class="choices">
-                  <input type="radio" name="q3" value="1" required>
-                  <input type="radio" name="q3" value="2" >
-                  <input type="radio" name="q3" value="3" >
-                  <input type="radio" name="q3" value="4" >
-                  <input type="radio" name="q3" value="5" >
-                </div>
-                <div id="question-4" class="question">
-                  Espresso
-                </div>
-                <div id="choices-4" class="choices">
-                  <input type="radio" name="q4" value="1" required>
-                  <input type="radio" name="q4" value="2" >
-                  <input type="radio" name="q4" value="3" >
-                  <input type="radio" name="q4" value="4" >
-                  <input type="radio" name="q4" value="5" >
-                </div>
-                <div id="question-5" class="question">
-                  Latte
-                </div>
-                <div id="choices-5" class="choices">
-                  <input type="radio" name="q5" value="1" required>
-                  <input type="radio" name="q5" value="2" >
-                  <input type="radio" name="q5" value="3" >
-                  <input type="radio" name="q5" value="4" >
-                  <input type="radio" name="q5" value="5" >
-                </div>
-                <div id="question-6" class="question">
-                  Macchiato
-                </div>
-                <div id="choices-6" class="choices">
-                  <input type="radio" name="q6" value="1" required>
-                  <input type="radio" name="q6" value="2" >
-                  <input type="radio" name="q6" value="3" >
-                  <input type="radio" name="q6" value="4" >
-                  <input type="radio" name="q6" value="5" >
-                </div>
-              </div>
-
-              Check all that apply to you:
-              <br>
-
-              <!-- User Story #14: Inside the form element, I want to select several fields from a series of checkboxes, each of which must have a value attribute -->
-              <span>&nbsp&nbsp&nbsp</span><input type="checkbox" id="contact1" name="contact1" value="loyal">
-              <label class="main" for="contact1">I have been a loyal Starbucks customer!</label>
-              <br>
-              <span>&nbsp&nbsp&nbsp</span><input type="checkbox" id="contact2" name="contact2" value="taste">
-              <label class="main" for="contact2">I just love the taste of Starbucks drinks.</label>
-              <br>
-
-              
-            </div>
-
-            <div id="down-form">
-              <br>
-              <br>
-              <p style="color:#2ff287; font-weight: 300; letter-spacing: 1.5px; margin-right: 20px">Have some interesting Starbucks experience to share? Let's hear them from you!</p>
-
-              <!-- User Story #15: Inside the form element, I want to see a textarea at the end for additional comments -->
-              <textarea name="comments" id="comments" wrap="soft" placeholder="What is your most memorable Starbucks experience?"></textarea>
-
-              <br>
-
-              <!-- User Story #16: Inside the form element, I want to see a button with id="submit" to submit all my inputs -->
-              <!-- User Story #17: I can submit my inputs to the address bar -->
-              <input type="submit" value="Submit" id="submit">
-            </div>
-
-            
-
-          </form> 
-
-        </div>
-        <div id="footer">
-          <p>*Gift cards are redeemable only until December 31, 2021.</p>
-        </div>
-        
-  
-         
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Survey Form - Starbucks Raffle</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main id="main">
+    <!-- Starbucks Card -->
+    <div id="main-container">
+      <div id="intro-container" class="padded">
+        <h2>We really value our customers, that's why we're giving away 30 gift cards for free!*</h2>
       </div>
-      
+      <div id="logo-container" class="padded">
+        <img src="./assets/sb-logo.png" id="logo">
+      </div>
+      <div id="header-container" class="padded">
+        <h1 id="title">Starbucks Survey Raffle</h1>
+        <p id="description">Complete this survey and get a chance to win free gift card!</p>
+      </div>
+      <div id="form-container">
+        <!-- Main Form -->
+        <!-- User Story #17: I can submit my inputs to the address bar -->
+        <form action="./success.html" id="survey-form" class="flex-container" method="GET" autocomplete="off">
+          <!-- Left Form -->
+          <div id="left-form">
+            <!-- User Story #10: For the name, email, and number input fields inside the form, I can see corresponding labels that describe the purpose of each field with the following ids: id="name-label", id="email-label", and id="number-label" -->
+            <!-- User Story #11: For the name, email, and number input fields, I want to see placeholder text that gives me a description or instructions for each field -->
+            <label for="name" id="name-label">Full Name</label>
+            <br>
+            <!-- User Story #4: As a user, I want to be required to enter my name in a field with id="name" (Inside form element) -->
+            <input type="text" name="name" id="name" class="input" placeholder="e.g. Star Bucks" autocomplete="off" required>
+            <br>
+            <br>
+
+            <!-- User Story #10: For the name, email, and number input fields inside the form, I can see corresponding labels that describe the purpose of each field with the following ids: id="name-label", id="email-label", and id="number-label" -->
+            <!-- User Story #11: For the name, email, and number input fields, I want to see placeholder text that gives me a description or instructions for each field -->
+            <label for="email" id="email-label">Email Address</label>
+            <br>
+            <!-- User Story #5: As a user, I want to be required to enter an email in a field with id="email" (Inside form element) -->
+            <!-- User Story #6: As a user, I want to see a validation error if I enter an email that is not formatted correctly -->
+            <input type="text" name="email" id="email" class="input" placeholder="e.g. loyal@starbucks.com" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please input a valid address" autocomplete="off" required>
+            <br>
+            <br>
+
+            <label for="number" id="number-label">Contact Number</label>
+            <br>
+            <input type="text" name="number" id="cpnumber" class="input" placeholder="e.g. 09123456789" pattern="(09)\d{9}$" title="Please follow the correct format" autocomplete="off" required>
+            <br>
+            <br>
+
+            <label for="gender" id="gender-label">Gender</label>
+            <!-- User Story #12: Inside the form element, I want to select an option from a dropdown that has a corresponding id="dropdown" -->
+            <select name="gender" id="dropdown" style="color:whitesmoke" placeholder="Select gender" required>
+              <option value="" disabled selected hidden class="options">Select gender</option>
+              <option value="agender" class="options">Agender</option>
+              <option value="androgynous" class="options">Androgynous</option>
+              <option value="bigender" class="options">Bigender</option>
+              <option value="cisgender" class="options">Cisgender</option>
+              <option value="cis-woman" class="options">Ciswoman</option>
+              <option value="cis-man" class="options">Cisman</option>
+              <option value="non-binary" class="options">Non-binary</option>
+              <option value="gender-fluid" class="options">Gender Fluid</option>
+              <option value="gender-questioning" class="options">Gender Questioning</option>
+              <option value="transgender" class="options">Transgender</option>
+              <option value="trans-woman" class="options">Trans Woman</option>
+              <option value="trans-man" class="options">Trans Man</option>
+              <option value="others" class="options">Others</option>
+            </select>
+
+            <!-- User Story #10: For the name, email, and number input fields inside the form, I can see corresponding labels that describe the purpose of each field with the following ids: id="name-label", id="email-label", and id="number-label" -->
+            <!-- User Story #11: For the name, email, and number input fields, I want to see placeholder text that gives me a description or instructions for each field -->
+            <label for="number" id="number-label">Age</label>
+            <!-- User Story #7: As a user, I should be able to enter a number in a field with id="number" -->
+            <!-- User Story #8: As a user, if I enter non-numbers in the number input, I want to see an HTML5 validation error -->
+            <!-- User Story #9: As a user, if I enter numbers outside the range of the number input, which are defined by the min and max attributes, I will see an HTML5 validation error -->
+            <input type="number" name="number" id="number" class="input2" placeholder="0-120" pattern="[0-9]{3}" min="0" max="120" title="Please input a number within range" autocomplete="off" required>
+          </div>
+          <!-- Right Form -->  
+          <div id="right-form">
+            Rate the following drinks:
+            <p id="scale">1 - lowest to 5 - highest</p>
+            <!-- Radio Button Rating-->
+            <div id="survey-div">
+              <div id="blank" class="question">
+              <!-- Empty Space-->  
+              </div>
+              <div id="survey-header">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+                <div>5</div>
+              </div>
+              <div id="question-2" class="question">
+                Americano
+              </div>
+              <div id="choices-2" class="choices">
+                <input type="radio" name="q2" value="1" required>
+                <input type="radio" name="q2" value="2" >
+                <input type="radio" name="q2" value="3" >
+                <input type="radio" name="q2" value="4" >
+                <input type="radio" name="q2" value="5" >
+              </div>
+              <div id="question-3" class="question">
+                Cappuccino
+              </div>
+              <div id="choices-3" class="choices">
+                <input type="radio" name="q3" value="1" required>
+                <input type="radio" name="q3" value="2" >
+                <input type="radio" name="q3" value="3" >
+                <input type="radio" name="q3" value="4" >
+                <input type="radio" name="q3" value="5" >
+              </div>
+              <div id="question-4" class="question">
+                Espresso
+              </div>
+              <div id="choices-4" class="choices">
+                <input type="radio" name="q4" value="1" required>
+                <input type="radio" name="q4" value="2" >
+                <input type="radio" name="q4" value="3" >
+                <input type="radio" name="q4" value="4" >
+                <input type="radio" name="q4" value="5" >
+              </div>
+              <div id="question-5" class="question">
+                Latte
+              </div>
+              <div id="choices-5" class="choices">
+                <input type="radio" name="q5" value="1" required>
+                <input type="radio" name="q5" value="2" >
+                <input type="radio" name="q5" value="3" >
+                <input type="radio" name="q5" value="4" >
+                <input type="radio" name="q5" value="5" >
+              </div>
+              <div id="question-6" class="question">
+                Macchiato
+              </div>
+              <div id="choices-6" class="choices">
+                <input type="radio" name="q6" value="1" required>
+                <input type="radio" name="q6" value="2" >
+                <input type="radio" name="q6" value="3" >
+                <input type="radio" name="q6" value="4" >
+                <input type="radio" name="q6" value="5" >
+              </div>
+            </div>
+            Check all that apply to you:
+            <br>
+            <!-- User Story #14: Inside the form element, I want to select several fields from a series of checkboxes, each of which must have a value attribute -->
+            <span>&nbsp&nbsp&nbsp</span><input type="checkbox" id="contact1" name="contact1" value="loyal">
+            <label class="main" for="contact1">I have been a loyal Starbucks customer!</label>
+            <br>
+            <span>&nbsp&nbsp&nbsp</span><input type="checkbox" id="contact2" name="contact2" value="taste">
+            <label class="main" for="contact2">I just love the taste of Starbucks drinks.</label>
+            <br>       
+          </div>
+          <!-- Down Form -->
+          <div id="down-form">
+            <br>
+            <br>
+            <p style="color:#2ff287; font-weight: 300; letter-spacing: 1.5px; margin-right: 20px">Have some interesting Starbucks experience to share? Let's hear them from you!</p>
+            <!-- User Story #15: Inside the form element, I want to see a textarea at the end for additional comments -->
+            <textarea name="comments" id="comments" wrap="soft" placeholder="What is your most memorable Starbucks experience?"></textarea>
+            <br>
+            <!-- User Story #16: Inside the form element, I want to see a button with id="submit" to submit all my inputs -->
+            <input type="submit" value="Submit" id="submit">
+          </div>
+        </form>
+      </div>
+      <!-- Footer Note -->
+      <div id="footer">
+        <p>*Gift cards are redeemable only until December 31, 2021.</p>
+      </div>
+    </div>
   </main> 
-  </body>
+</body>
 </html>
