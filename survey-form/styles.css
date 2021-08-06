@@ -1,10 +1,10 @@
-<!--
 /* Fonts used */
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap');
 
+/* To hide up and down arrows of number input */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -12,29 +12,28 @@ input::-webkit-inner-spin-button {
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    font-size: 1vw;
-    color: white;
-    font-family: 'Work Sans', sans-serif;
-    scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1vw;
+  color: white;
+  scroll-behavior: smooth;
 }
 
 #title {
-  /* font-family: 'Source Sans Pro', sans-serif; */
   font-family: 'Open Sans', sans-serif;
-  text-transform: uppercase;
   font-size: 3vw;
+  font-weight: bolder!important;
   color: #04643c;
+  text-transform: uppercase;
   -webkit-text-stroke:0.5px rgb(255, 255, 255);
   text-shadow: 5px 5px 10px rgb(17, 13, 13);
   letter-spacing: 3px;
-  font-weight: bolder!important;
 }
 
 #description {
-  font-style: oblique;
   font-size: 1.5vw;
+  font-style: oblique;
 }
 
 h2 {
@@ -49,13 +48,11 @@ h2 {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
-
     font-family: 'Work Sans', sans-serif;
     color: white;
     width: 100%;
     height: 100vh;
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
 }
@@ -63,59 +60,46 @@ h2 {
 #main-container {
     width: 75%;
     height: 85%;
-    /* background-color: blanchedalmond; */
     background-image: url(./assets/coffee-card.jpg);
     background-size: cover;
-    /* background-image: linear-gradient(rgba(28, 23, 23, 0.494), rgba(28, 23, 23, 0.494)); */
     background-color: rgba(29, 23, 23, 0.583);
     background-blend-mode: soft-light;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
     display: grid;
-    /* grid-template-columns: 20% 20% 20% 20%;
-    grid-template-rows: 10% 10% 10% 10% 10% 10% 10%; */
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(8, 1fr);
     justify-content: center;
-    /* align-items: center; */
     grid-gap: 0.5vw;
     padding: 1vw;
     border-radius: 2vw;
-    box-shadow: 0 4px 2px rgba(0, 0, 0, .5);
-    box-shadow: 0 1px 2px darkgray;
-
-    box-shadow: -5px -5px 18px #2b2525b4;
-    box-shadow: 5px 5px 18px #2b2525b4;
+    box-shadow: 0 4px 2px rgba(0, 0, 0, .5),
+                0 1px 2px darkgray,
+                -5px -5px 18px #2b2525b4,
+                5px 5px 18px #2b2525b4;
 }
 
 #header-container {
-  /* grid-area: 1 / 2 / span 1 / span 4; */
-  /* background-color: rgb(149, 255, 0); */
   display: block;
   grid-area: 1 / 2 / span 1 / span 3;
 }
 
 #form-container {
-  /* grid-area: 2 / 2 / span 7 / span 4; */
-  /* background-color: rgb(162, 60, 29); */
   grid-area: 2 / 2 / span 7 / span 3;
 }
 
 #left-form {
-  /* background-color: rgb(150, 143, 43); */
   grid-area: 1 / 1 / span 2 / span 1;
   padding: 1vw;
 }
 
 #right-form {
-  /* background-color: rgb(43, 77, 150); */
   grid-area: 1 / 2 / span 2 / span 1;
   padding: 1vw;
 }
 
 #down-form {
-  /* background-color: cyan; */
   grid-area: 3 / 1 / span 2 / span 2;
   padding: 1vw;
   display: flex;
@@ -125,24 +109,15 @@ h2 {
 }
 
 #intro-container {
-  /* grid-area: 1 / 1 / span 4 / span 1; */
-  /* background-color: rgb(0, 102, 255); */
   grid-area: 1 / 1 / span 4 / span 1;
 }
 
 #logo-container {
-  /* grid-area: 5 / 1 / span 4 / span 1; */
-  /* background-color: rgb(220, 53, 172); */
-  justify-content: flex-start;
-  align-items: flex-end!important;
   grid-area: 5 / 1 / span 4 / span 1;
 }
 
 #logo {
   width: 100%;
-  height: auto;
-  max-width: 625px;
-  display: flex;
   object-fit: cover;
   border-radius: 50%;
   box-shadow: -5px -5px 10px #000000b4;
@@ -158,7 +133,6 @@ h2 {
 }
 
 .flex-container {
-  /* background: black; */
   display: grid;
   height: 100%;
   grid-template-columns: repeat(2, 1fr);
@@ -168,6 +142,7 @@ h2 {
 }
 
 .input {
+  background-color: transparent;
   width: 20vw;
   outline: none;
   padding: .5rem .5rem .5rem 1rem;
@@ -175,10 +150,10 @@ h2 {
   border-right-style: hidden;
   border-left-style: hidden;
   border-bottom: 0.5px solid white;
-  background-color: transparent;
 }
 
 .input2 {
+  background-color: transparent;
   width: 3vw;
   outline: none;
   padding: .5rem .5rem .5rem 1rem;
@@ -186,7 +161,6 @@ h2 {
   border-right-style: hidden;
   border-left-style: hidden;
   border-bottom: 0.5px solid white;
-  background-color: transparent;
 }
 
 #name::placeholder, #email::placeholder, #number::placeholder, #cpnumber::placeholder {
@@ -203,7 +177,6 @@ h2 {
   color: white;
 }
 
-
 textarea {
   resize: none;
   color: black;
@@ -214,9 +187,7 @@ textarea {
   grid-template-columns: 1fr 3fr;
   grid-template-rows: 3fr 1fr 1fr 1fr;
   justify-content: center;
-  /* background-color: blue; */
   margin-bottom: 1.5rem;
-  /* padding: 5px; */
 }
 
 #survey-header, .choices {
@@ -242,18 +213,17 @@ textarea {
 }
 
 #submit {
-  display: block;
   margin: 0.3vw;
   padding: 0.5vw 1vw;
+  background-color: #04643c;
   text-decoration: none;
   text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-weight:300;
+  text-transform: uppercase;
   color: white;
   letter-spacing: .2em;
-  font-family: 'Open Sans', sans-serif;
-  text-transform: uppercase;
-  font-weight:300;
-  background-color: #04643c;
-  /* border: 0.5vw solid white; */
+  display: block;
   border-radius: 25px;
   box-shadow: 0 4px 2px rgba(0, 0, 0, .5);
   position: relative;
@@ -263,7 +233,6 @@ textarea {
 
 #submit:hover, #submit:focus {
   background-color: #04643c;
-  /* border-color: #04643c; */
   color: white;
   cursor: pointer;
 }
@@ -274,28 +243,28 @@ textarea {
 }
 
 select{
-  border:1px;
   background-color: #04643c;
+  width: 10vw;
+  margin: 0.5vw;
+  padding-left: 10px;
+  border:1px;
   border-radius: 10px;
   box-shadow: black;
-  margin: 0.5vw;
-  width: 10vw;
-  padding-left: 10px;
 }
 
 #comments {
-  float: left;
-  width: 90%;
   background-color: #fcfff4;
-  color: #04643c;
+  margin-top: 3px;
+  margin-right: 20px;
+  padding: 10px;
+  width: 90%;
   min-height: 75px;
+  float: left;
+  color: #04643c;
   outline: none;
   resize: none;
   border: 3px solid #04643c;
   border-radius: 10px;
-  padding: 10px;
-  margin-top: 3px;
-  margin-right: 20px;
 }
 
 #comments::placeholder {
@@ -333,9 +302,3 @@ input[type='radio']:checked:after {
   visibility: visible;
   border: 2px solid white;
 }
-
-
-
-
-
--->
