@@ -3,6 +3,22 @@
     padding: 0;
 }
 
+html {
+    font-size: 10vmin;
+    /* color: #273441; */
+    color: #21313f;
+}
+
+body {
+    background-image: url("./assets/cloth.jpg");
+    background-size: cover;
+    background-color: rgba(132, 146, 182, 0.549);
+    background-blend-mode: overlay;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 #container {
     /* background-color: #3d4e5e93; */
     background-color: #485868;
@@ -57,6 +73,10 @@
 .tiles {
     width: 11vmin;
     height: 11vmin;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .tiles.white {
