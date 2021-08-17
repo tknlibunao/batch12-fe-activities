@@ -1,8 +1,13 @@
 @media screen and (min-width: 769px) and (max-width: 1024px) {
     /* Small sreens, laptops */
 
+    body {
+        overflow-x: hidden!important;
+    }
+
     section {
         /* background-color: blue; */
+        overflow-x: hidden!important;
         width: 100vw;
         height: 100vh;
         display: flex;
@@ -10,43 +15,6 @@
         justify-self: center;
         align-self: center;
         align-items: center;
-    }
-
-    #header {
-        background-color: #FFFFFFf8;
-        width: 100%;
-        height: 10vh;
-        position: fixed;
-        top: 0;
-        z-index: 200;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 0 1px 1px rgb(0 0 0 / 7%);
-    }
-    
-    #header-img {
-        height: 7vh;
-    }
-    
-    #nav-bar {
-        /* background-color: yellow; */
-        width: 45vmin;
-        height: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        text-transform: uppercase;
-        padding-top: 1vmin;
-    }
-    
-    .nav-link {
-        text-decoration: none;
-        color: #FF7518;
-        font-size: 1.6vmin;
-        font-weight: 700;
     }
 
     /* HOME */
