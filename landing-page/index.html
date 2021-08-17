@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./scroll.css">
     <link rel="stylesheet" href="./media-1.css">
     <link rel="stylesheet" href="./media-2.css">
     <title>Product Landing Page</title>
 </head>
 <body>
     <!-- Header element -->
-    <header id="header">
-        <!-- Header must contain an image element and nav element -->
+    <!-- <header id="header">
         <a href="#home" class="img-link"><img src="./assets/logo-1.png" id="header-img"></a>
         <span></span>
         <span></span>
@@ -26,27 +26,54 @@
             <a href="#download" class="nav-link">Support Me!</a>
             <a href="https://absurd.design/about.html" class="nav-link">About</a>
         </nav>
+    </header> -->
+
+    <header id="header" class="header">
+        
+        <nav id="nav-bar" class="nav-bar">
+            <a href="#home" class="img-link"><img src="./assets/logo-1.png" id="header-img"></a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#chapters" class="nav-link">Chapters</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#samples" class="nav-link">Samples</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#download" class="nav-link">Support Me!</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://absurd.design/about.html" class="nav-link">About</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
     </header>
+
     <section id="home">
         <!-- Section #0: Home -->
         <div id="container-home">
             <div class="inner-home">
                 <div class="left-home">
-                    <video autoplay loop muted playsinline src="./assets/intro-gif.mp4" id="intro-gif"></video>
+                    <video autoplay loop muted playsinline src="./assets/intro-gif.mp4" id="intro-gif" class="fade-in"></video>
                 </div>
                 <div class="right-top-home">
-                    <h1 class="title"><span style="color: #FF7518;">absurd</span> illustrations</h1>
-                    <h1 class="title"> that make sense</h1>
+                    <h1 class="title fade-in"><span style="color: #FF7518;">absurd</span> illustrations</h1>
+                    <h1 class="title fade-in"> that make sense</h1>
                 </div>
                 <div class="right-middle-home">
-                    <p id="subtitle">
+                    <p id="subtitle" class="fade-in">
                         What about absurd illustrations for your projects?
                         Take every user on an individual journey through
                         their own imagination.
                     </p>    
                 </div>
                 <div class="right-bottom-home">
-                    <div id="btn-home">
+                    <div id="btn-home" class="fade-in">
                         <a href="#download" id="btn-download" class="btn">download</a>
                         <a href="#subscribe" id="btn-subscribe" class="btn">subscribe</a>
                     </div>    
@@ -60,14 +87,14 @@
         <div id="container-why">
             <div class="inner-why">
                 <div class="right-why">
-                    <img src="./assets/section-1.png" id="img-right">
+                    <img src="./assets/section-1.png" id="img-right" class="slide-in from-right">
                 </div>
                 <div class="left-top-why">
-                    <h1>real beauty resides</h1>
-                    <h1>in <span style="color:#FF7518;">imperfection</span></h1>
+                    <h1 class="slide-in from-left">real beauty resides</h1>
+                    <h1 class="slide-in from-left">in <span style="color:#FF7518;">imperfection</span></h1>
                 </div>
                 <div class="left-bottom-why">
-                    <p>
+                    <p class="slide-in from-left">
                         In a digital era, we sometimes feel the need to
                         interact with something more human that will
                         make us appreciate both the beauty and the
@@ -83,14 +110,14 @@
         <div id="container-why2">
             <div class="inner-why2">
                 <div class="left-why2">
-                    <img src="./assets/section-2.png" id="img-left">
+                    <img src="./assets/section-2.png" id="img-left" class="slide-in from-left">
                 </div>
                 <div class="right-top-why2">
-                    <h1><span style="color:#FF7518;">expressiveness</span> is...</h1>
-                    <h1>the new black</h1>
+                    <h1 class="slide-in from-right"><span style="color:#FF7518;">expressiveness</span> is...</h1>
+                    <h1 class="slide-in from-right">the new black</h1>
                 </div>
                 <div class="right-bottom-why2">
-                    <p>
+                    <p class="slide-in from-right">
                         This series of illustrations paradoxically combines
                         absurdity and a deep sense of childishness and
                         naivety.
@@ -100,19 +127,19 @@
         </div>
     </section>
 
-    <section id="samples">
+    <section id="samples" class="fade-in">
         <!-- Section #3: Samples -->
         <div id="container-samples">
             <div class="inner-samples">
                 <div class="left-samples">
                     <!-- <iframe src="https://www.youtube.com/embed/mVLrBJYGxk4?autoplay=0&mute=1&fs=0&modestbranding=1" id="video"></iframe> -->
-                    <iframe src="./assets/intro-gif.mp4" id="video" frameborder="0"></iframe>
+                    <iframe src="./assets/product-video.mp4" id="video" frameborder="0"></iframe>
                 </div>
                 <div class="right-top-samples">
-                    <h1>examples of use</h1>
+                    <h1 class="slide-in from-right">examples of use</h1>
                 </div>
                 <div class="right-bottom-samples">
-                    <p id="subsamples">
+                    <p id="subsamples" class="slide-in from-right">
                         Each illustration offers the possibility
                         of limitless interpretations and everyone
                         can give it its own meaning. It depends only
@@ -123,7 +150,7 @@
         </div>
     </section>
 
-    <section id="chapters">
+    <section id="chapters" class="fade-in">
         <!-- Section #4: Chapters -->
         <div id="container-chapters">
             <div class="inner-chapters">
@@ -189,7 +216,7 @@
         </div>
     </section>
 
-    <section id="download">
+    <section id="download" class="fade-in">
         <div id="container-download">
             <div class="inner-download">
                 <div class="top-download">
@@ -252,7 +279,7 @@
         </div>
     </section>
 
-    <section id="mentions">
+    <section id="mentions" class="fade-in">
         <div id="container-mentions">
             <div class="inner-mentions">
                 <div class="top-mentions">
@@ -270,46 +297,46 @@
                     <div class="slider">
                         <div class="slide-track">
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" class="img-carousel"/>
+                                <img src="./assets/logos/1.png" class="img-carousel"/>
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" class="img-carousel"/>
+                                <img src="./assets/logos/2.png" class="img-carousel"/>
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" class="img-carousel"/>
+                                <img src="./assets/logos/3.png" class="img-carousel"/>
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" class="img-carousel"/>
+                                <img src="./assets/logos/4.png" class="img-carousel"/>
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" class="img-carousel"/>
+                                <img src="./assets/logos/5.png" class="img-carousel"/>
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" class="img-carousel"/>
+                                <img src="./assets/logos/6.png" class="img-carousel"/>
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" class="img-carousel"/>
+                                <img src="./assets/logos/7.png" class="img-carousel"/>
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" class="img-carousel"/>
+                                <img src="./assets/logos/1.png" class="img-carousel"/>
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" class="img-carousel"/>
+                                <img src="./assets/logos/2.png" class="img-carousel"/>
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" class="img-carousel"/>
+                                <img src="./assets/logos/3.png" class="img-carousel"/>
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" class="img-carousel"/>
+                                <img src="./assets/logos/4.png" class="img-carousel"/>
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" class="img-carousel"/>
+                                <img src="./assets/logos/5.png" class="img-carousel"/>
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" class="img-carousel"/>
+                                <img src="./assets/logos/6.png" class="img-carousel"/>
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" class="img-carousel"/>
+                                <img src="./assets/logos/7.png" class="img-carousel"/>
                             </div>
                         </div>
                     </div>
@@ -318,33 +345,33 @@
         </div>
     </section>
 
-    <section id="subscribe">
+    <section id="subscribe" style="height: 90vh;">
         <div id="container-subscribe">
             <div class="inner-subscribe">
                 <div class="top-subscribe">
-                    <h1>
+                    <h1 class="slide-in2 from-bottom">
                         do you want more?
                     </h1>
                 </div>
                 <div class="mid-subscribe">
-                    <p id="subscribe-call">
+                    <p id="subscribe-call" class="slide-in2 from-bottom">
                         Subscribe for new updates and illustrations. Don't miss the new absurd illustrations!
                     </p>
                 </div>
                 <div class="bottom-subscribe">
-                    <form action="#" id="form" method="GET">
-                        <div class="form-email">
-                            <input type="text" name="email" id="email" class="input" placeholder="Email Address" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="e.g. username@domain.com" autocomplete="off" required>
-                            <input type="submit" id="submit" value="subscribe">
+                    <form action="./success.html" id="form" method="GET">
+                        <div class="form-email" class="slide-in2 from-bottom">
+                            <input type="text" name="email" id="email" class="input slide-in from-left" placeholder="Email Address" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="e.g. username@domain.com" autocomplete="off" required>
+                            <input type="submit" name="submit" id="submit" class="slide-in from-right" value="subscribe">
                         </div>
                         <div class="form-agree">
                             <!-- <input type="checkbox" id="agree" name="agree" value="agree">
                             <label class="check-agree" for="agree"><span>&nbsp&nbsp&nbsp</span>I agree to receive your newsletters and accept the data privacy statement.<span style="color:red;">*</span></label> -->
-                            <label>
-                                <input type="checkbox" name="agree" required/>
+                            <label class="fade-in">
+                                <input type="checkbox" name="agree" required />
                                 <span class="cb-icon"></span>
                             </label>
-                            <label class="check-agree" for="agree"><span>&nbsp&nbsp</span>I agree to receive your newsletters and accept the data privacy statement.<span style="color:#FF7518;">*</span></label>
+                            <label class="check-agree fade-in" for="agree"><span>&nbsp&nbsp</span>I agree to receive your newsletters and accept the data privacy statement.<span style="color:#FF7518;">*</span></label>
                         </div>
                     </form>
                 </div>
@@ -352,8 +379,18 @@
         </div>
     </section>
 
-
+    <footer id="footer">
+        <p class="footer-subtitles">
+            Redesigned by @tknlibunao. Illustration(s) from absurd.design.
+        </p>
+        <p class="footer-subtitles">
+            Copyright © 2021. All rights reserved.
+        </p>
+    </footer>
 </body>
 
-<script src="./script.js"></script>
+<script src="./typewriter.js"></script>
+<script src="./hamburger.js"></script>
+<script src="./scroll.js"></script>
+
 </html>
