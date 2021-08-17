@@ -15,6 +15,30 @@ body {
     background-color: #FFFFFF;
     font-family: 'Josefin Sans';
     font-size: 6vmin;
+    overflow-x: hidden!important;
+}
+
+/* Scroll bar */
+
+/* Width */
+    ::-webkit-scrollbar {
+    width: 13px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f3d9c4; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #FF7518;
+    border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #a56234;
 }
 
 /* Font Colors & Sizes */
@@ -109,7 +133,7 @@ p {
                 rgba(0, 0, 0, 0.3) 0px 32px 64px;
 }
 
-/* Header (Nav Bar) */
+/* Header (Nav Bar) & Footer */
 
 #header {
     background-color: #FFFFFFf8;
@@ -120,9 +144,30 @@ p {
     z-index: 200;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     box-shadow: 0 1px 1px rgb(0 0 0 / 7%);
+}
+
+#footer {
+    background-color: #ff741800;
+    width: 100%;
+    height: 7vh;
+    /* position: fixed; */
+    bottom: 0;
+    z-index: 200;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 0 -1px 5px rgb(0 0 0 / 20%);
+    opacity: 1;
+}
+
+.footer-subtitles {
+    color: #231F20;
+    font-size: 2vmin;
+    font-style: italic;
 }
 
 #header-img {
@@ -131,7 +176,7 @@ p {
 }
 
 #nav-bar {
-    width: 60vmin;
+    width: 90vw;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -146,6 +191,40 @@ p {
     color: #FF7518;
     font-size: 2vmin;
     font-weight: 700;
+}
+
+/* Hamburger */
+/* see hamburger.js */
+
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 200;
+}
+
+.nav-item {
+    margin-left: 6vmin;
+    margin-bottom: 2vmin;
+}
+
+li {
+    list-style: none;
+}
+
+.hamburger {
+    display: none;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    border-radius: 10px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: #FF7518;
 }
 
 /* Sections */
