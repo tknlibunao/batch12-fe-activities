@@ -42,6 +42,7 @@ function getName() {
     });
 }
 
+// LOAD LOGIC (`LOGGING IN`)
 // When the user presses enter (Input Name Template on load), simulate "logging in" 
 // loadWorkspace: simulates loading screen / workspace
 function loadWorkspace() {
@@ -67,24 +68,15 @@ function loadWorkspace() {
     // setTimeout to compensate for the timing on loadWorkspace()
     // load all data whose STATES should be SAVED
     setTimeout(() => {
-        // load real-time clock
-        getTime();
-
-        // load main focus
-        loadFocus();
-
-        // load greetings
-        loadGreetings();
-
-        // load quotes
-        // loadQuotes();
-
-        // load todo
-        // loadToDo()
+        loadSaved();        
     }, 5600);
 }
 
+// loadSaved: displays the following on their current/saved state {time, focus, greetings, quotes, todo}
 function loadSaved() {
+    // change background
+    document.body.style.backgroundImage = `url("./assets/backgroundfinal2.png")`;
+    
     // load real-time clock
     getTime();
 
@@ -95,7 +87,10 @@ function loadSaved() {
     loadGreetings();
 
     // load quotes
-    // loadQuotes();
+    loadQuotes();
+
+    // load todo
+    loadToDo();
 }
 
 // TIME LOGIC
@@ -104,9 +99,10 @@ function loadSaved() {
 function getTime() {
     var today = new Date();
     document.getElementById('currentTime').innerHTML = today.toLocaleTimeString('en-GB', { hour12: false });
+
+    // Save time state
     state.time = today.toLocaleTimeString('en-GB', { hour12: false });
     saveState();
-    // console.log("Time: ", state.time)
     setTimeout(getTime, 1000);  //refresh time: 1s
 }
 
@@ -131,7 +127,6 @@ function loadFocus() {
     newElement.setAttribute("spellcheck", "false");
     if(state.focus) {
         newElement.textContent = state.focus;
-        // console.log("Focus:", state.focus)
     }
     else {
         newElement.textContent = "set your goal here!";
@@ -154,9 +149,10 @@ function loadFocus() {
     // In which case, remove it from the classlist 'is-focused'
     inputFocus.addEventListener('blur', function() {
         this.classList.remove('is-focused');
+        
+        // Save focus state
         state.focus = inputFocus.innerHTML;
         saveState();
-        console.log("Focus: ", state.focus)
     });
 }
 
@@ -165,10 +161,8 @@ function loadFocus() {
 // loadFocus: replaces the content of divInputName with the Main Focus Template
 //          : listens if the user focuses/blurs on/from the contenteditable element
 function loadGreetings() {
-    
     document.getElementById('greeting').textContent = "";
     document.getElementById('greeting').innerHTML = `Good to see you, <span id=inputGreetings contenteditable=true spellcheck=false>${state.name}</span>!`;
-    // document.getElementById('inputGreetings').textContent = state.name;
 
     // GREETINGS LOGIC
     // Get span (greetings) element
@@ -189,15 +183,150 @@ function loadGreetings() {
             state.name = inputGreetings.innerHTML;
             saveState();
         }
-        // else {
-        //     alert("Warning! It seems like you left your name field empty. Please input your name :)")
-        // }
-        console.log("State Name: ", state.name)
+        else {
+            alert("Warning! It seems like you left your name field empty. Please input your name :)")
+        }
     });
 }
 
 // QUOTES LOGIC
+// getQuote: fetches object quotes from an API and returns the fetched data
+const getQuote = async() => {
+    const res = await fetch("https://type.fit/api/quotes");
+    const data = await res.json()
+    return data
+}
 
+// Generating random quotes
+// getRandomIntInclusive: generates a random integer between min and max parameters (inclusive)
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+// chooseQuote: generates a random index from 0-1642 and checks if the corresponding length of the quote is < 50
+//            : if it satisfies, then get text and author values, store it in the object state, then save state
+function chooseQuote(nextQuote) {
+    let idx = getRandomIntInclusive(0, 1642);
+    let quote = nextQuote[idx].text;
+    if (quote.length < 50) {
+        state.quote = nextQuote[idx].text;
+        saveState();
+        if (nextQuote[idx].author === null) {
+            state.author = 'Anonymous';
+            saveState();
+        }
+        else {
+            state.author = nextQuote[idx].author;
+            saveState();
+        }
+    }
+    else {
+        chooseQuote(nextQuote);
+    }
+}
+
+// Load the quotes after "logging in"
+// loadQuotes: displays the Quote Template
+//           : listens if user clicks Generate or Add buttons
+//           : if Generate, will generate a new random quote from the given API
+//           : if Add, will make the quote element contenteditable so the user can edit the text field
+function loadQuotes() {
+    // Create main quote container
+    let quotesContainer = document.getElementById("divQuote");
+
+    // Create inner quote
+    let quotes = document.createElement('div');
+    quotes.setAttribute("id", "quote");
+
+    if (state.quote.length > 0) {
+            if (state.author.length > 0) {
+                quotes.textContent = `"${state.quote}" -${state.author}`;
+            }
+            else {
+                quotes.textContent = `"${state.quote}"`;
+            }
+
+    }
+    else {
+        quotes.textContent = `"We're no strangers to love... You know the rules and so do I..." -Rick Rolled`;
+
+    }
+
+    // Create quote options container
+    let quotesOptions = document.createElement('div');
+    quotesOptions.setAttribute("id", "quoteOptions");
+
+    // Create add button
+    let addQuote = document.createElement('div');
+    addQuote.setAttribute("id", "add");
+    addQuote.textContent = "Add your own quote";
+
+    // Create generate button
+    let generateQuote = document.createElement('div');
+    generateQuote.setAttribute("id", "generate");
+    generateQuote.textContent = "Next random quote";
+
+    // Append new elements to main quote container
+    quotesContainer.appendChild(quotes);
+    quotesOptions.appendChild(addQuote);
+    quotesOptions.appendChild(generateQuote);
+    quotesContainer.appendChild(quotesOptions);
+
+    // Quote Options Event Listener
+    // Float quoteOptions up on mouseover/hover
+    quotesContainer.addEventListener("mouseover", () => {
+        quotesOptions.style.visibility = "visible";
+        quotesOptions.style.animationName = "floatUp";
+        quotesOptions.style.animationDuration = "0.4s";
+        quotesOptions.style.animationTimingFunction = "ease-out";
+    })
+
+    // Fade quoteOptions to invisibility on mouseout
+    quotesContainer.addEventListener("mouseout", () => {
+        quotesOptions.style.animationName = "slowFade";
+        quotesOptions.style.animationDuration = "0.2s";
+        quotesOptions.style.animationTimingFunction = "ease-in";
+        quotesOptions.style.visibility = "hidden";
+    })
+
+    // Generate Button Event Listener
+    generateQuote.addEventListener('click', async() => {
+        let nextQuote = await getQuote();
+        chooseQuote(nextQuote)
+        quote.innerHTML = `"${state.quote}" -${state.author}`; 
+    })
+
+    // Add Button Event Listener
+    addQuote.addEventListener('click', () => {
+        quote.setAttribute("contenteditable", "true");
+        quote.classList.add('is-focused');
+        console.log("State1:", state.quote, "InnerHTML1:", quote.innerHTML)
+        console.log("State2:", state.quote, "InnerHTML2:", quote.innerHTML)
+        quote.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                if (quote.innerHTML.length > 1) {
+                    state.quote = quote.innerHTML;
+                    saveState();
+                    state.author = "";
+                    saveState();
+                    console.log("State3:", state.quote, "InnerHTML3:", quote.innerHTML)
+                    quote.innerHTML = `${state.quote}`;
+                    console.log("State4:", state.quote, "InnerHTML4:", quote.innerHTML)
+                    quote.setAttribute("contenteditable", "false");
+                    quote.classList.remove('is-focused');
+                }
+            }
+        })
+
+        generateQuote.addEventListener('click', async() => {
+            quote.setAttribute("contenteditable", "false");
+            quote.classList.remove('is-focused');
+            quote.innerHTML = `"${state.quote}" -${state.author}`; 
+        })
+    })
+}
 
 // RESET LOGIC
 //Reset button for testing and presentation
@@ -207,7 +336,8 @@ resetSwitch.addEventListener('click', () => {
     state = {
         name: "",
         focus: "",
-        quote: [],
+        quote: "",
+        author: "",
         todo: []
     }
     saveState();
@@ -216,25 +346,155 @@ resetSwitch.addEventListener('click', () => {
     location.reload();
 });
 
+// TODO LOGIC
+function loadToDo() {
+    // Load Todo Template
+    let todoContainer = document.querySelector('#todo');
+    todoContainer.innerHTML = `<div class="container">
+                                    <h1 class="app-title">DAILY TASKS</h1>
+                                    <ul class="todo-list js-todo-list"></ul>
+                                    <form class="js-form" autocomplete="off">
+                                        <input autofocus id="inputTodo" type="text" aria-label="Enter a new todo item" placeholder="Let's be productive together! You got this!" class="js-todo-input">
+                                    </form>
+                                </div>
+                                `;
 
+    // Render existing todoList, if exisiting
+    displayTodoList();
 
+    // Get form and input elements
+    const todoForm = document.querySelector(".js-form");
+    const todoInput = document.querySelector(".js-todo-input");
 
+    // Form Submit Event Listener
+    todoForm.addEventListener('submit', (event) => {
+        // prevent page from reloading on submit
+        event.preventDefault();
+        
+        // if user input is not empty, check if the current state.todo has exceeded the max number of todoItems (i.e. 10)
+            // if it is <= 10, create item
+            // otherwise, alert user to finish some tasks first :)
+        if (todoInput.value) {
+            if (state.todo.length < 10) {
+                let todoData = {todo: todoInput.value, completed: false}
+                state.todo.push(todoData);
+                console.log(state.todo)
+                saveState();
+                createTodoList(todoData);
+                console.log("Submitted!")
+            }
+            else {
+                alert("REST!")
+            }
+        }
+        // reload form input field
+        todoForm.reset();
+    })
+}
 
-// MAIN???
+// createTodoList(data): creates an `li` element for the user todoInput.value given by the input argument data
+function createTodoList(data) {
+    // get `ul` element
+    const todoList = document.querySelector(".js-todo-list");
+    
+    // create `li` element, set class="todo-item", and input corresponding inner elements (i.e. tickbox, todoInput text, delete button)
+    let todoItem = document.createElement("li");
+    todoItem.setAttribute("class", "todo-item")
+    todoItem.innerHTML = `<input type="checkbox"/>
+                          <label class="tick js-tick"></label>
+                          <span>${data["todo"]}</span>
+                          <button class="delete-todo js-delete-todo">
+                          ✕
+                          </button>`
+    // append `li` element (child) to `ul` element (parent)
+    todoList.append(todoItem);
+
+    // Tick Functionality
+    // get tickbox element
+    const tickTodo = todoItem.querySelector(".js-tick");
+
+    // check if todoInput is completed, in which case toggle the class `done` (render linethrough and checkmark)
+    if (data["completed"]) {
+        todoItem.classList.toggle("done")
+    }
+
+    // Tick Event Listener
+    tickTodo.addEventListener('click', () => {
+        // toggle the class `done`
+        todoItem.classList.toggle("done")
+
+        // toggle status of todoItem
+        if (!data["completed"]) {
+            data["completed"] = true;
+            console.log("Toggled to be true!")
+            console.log("CONGRATS!!!")
+        }
+        else {
+            data["completed"] = false;
+            console.log("Toggled to be false!")
+        }
+
+        saveState();
+    })
+
+    // Delete Functionality
+    // get delete button element
+    const deleteTodo = todoItem.querySelector(".js-delete-todo");
+
+    // Delete Event Listener
+    deleteTodo.addEventListener('click', () => {
+        // get corresponding todoInput.value
+        let itemDelete = todoItem.getElementsByTagName("span")[0].textContent;
+
+        // use filter to remove matches from array
+        // note: *slight* issue here is that, when you input duplicate entries,
+        // all entries will be deleted when you delete any of them
+        let arrFilter = state.todo.filter((data) => {
+            return data["todo"] !== itemDelete
+        })
+
+        // set returned array to state.todo
+        state.todo = arrFilter;
+
+        // remove element from DOM
+        todoItem.remove()
+
+        // delete all children under todoList (`ul` element)
+        todoList.innerHTML = "";
+
+        // update list displayed
+        displayTodoList();
+
+        saveState();
+
+    })
+}
+
+// displayTodoList: iterates within state.todo array and (re)creates an entry for each of its element
+//                : helpful for rerendering of stored state.todo on refreshed page
+function displayTodoList() {
+    state.todo.forEach((item) => createTodoList(item));
+}
+
+/* MAIN LOGIC */
 
 // Declare and set an object state
 // This will contain 6 parameters {name, greetings, focus, quote, todo}
 let state = {
     name: "",
     focus: "",
-    quote: [],
+    quote: "",
+    author: "",
     todo: []
 }
 
 // Load initial page template (i.e. input name + zZzZ... only)
 loadState();
 
+// if the state is yet to be initialized (i.e. `logged out`),  listen until user inputs name
+// otherwise (i.e. `logged in`), load the Saved Template
 if (!state.name) {
+
     getName();
 }
 else {

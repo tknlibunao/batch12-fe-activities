@@ -1,16 +1,57 @@
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap'); 
+
+@import url('https://fonts.googleapis.com/css2?family=Besley:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Besley:wght@900&display=swap');
-
-
-
 @font-face {
     font-family: 'digital';
     src: url('./fonts/digital.ttf');
 }
 
+/* ANIMATIONS */
+@keyframes floatUp {
+    /* start of animation */
+    0% {
+        opacity: 0;
+        transform: translateY(0.75rem);
+    }
+
+    80% {
+        opacity: 0.6;
+        visibility: visible;
+    }
+
+    /* end of animation */
+    100% {
+        opacity: 1;
+        visibility: visible;
+        /* transform: translateY(0); */
+    }
+}
+  
+@keyframes slowFade {
+    /* start of animation */
+    0% {
+        opacity: 1;
+        transform: translateY(0rem);
+    }
+
+    80% {
+        visibility: visible;
+        opacity: 0.6;
+    }
+
+    /* end of animation */
+    100% {
+        opacity: 0;
+        visibility: hidden;
+        /* transform: translateY(0); */
+    }
+}
+
+/* MAIN STYLES */
 * {
     margin: 0;
     padding: 0;
@@ -18,7 +59,7 @@
 }
 
 body {
-    background-image: url("./assets/backgroundfinal2.png");
+    background-image: url("./assets/backgroundfinal.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -51,34 +92,6 @@ p {
     border-radius: 3px;
     box-shadow: 2px 0px 4px rgb(19, 18, 18);
     cursor: pointer;
-}
-
-#quote {
-    font-family: 'Poppins', sans-serif;
-    font-size: 25px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #ffe138;
-    position: relative;
-    top: -15px;
-    /* text-shadow: 1px 1px 0px #292221; */
-    background-color: #2c2828;
-    color: transparent;
-    text-shadow: 2px 2px 3px #b57440;
-    -webkit-background-clip: text;
-        -moz-background-clip: text;
-            background-clip: text;
-}
-
-#quoteOptions {
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    position: relative;
-    top: 12px;
-    color: rgb(255, 207, 85);
 }
 
 #today {
@@ -140,6 +153,11 @@ p {
 
 #inputGreetings.is-focused ::after {
     content: '';
+}
+
+#quote.is-focused {
+    opacity: 0.8;
+    color: rgb(255, 255, 255);
 }
 
 #divTime {
@@ -228,18 +246,167 @@ p {
     top: 0px;
 }
 
-.hidden {
-    display: none;
+#quote {
+    font-family: 'Poppins', sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #412e15;
+    position: relative;
+    top: -15px;
+    /* text-shadow: 1px 1px 0px #292221; */
+    background-color: #2c2828;
+    color: transparent;
+    text-shadow: 2px 2px 3px #b57440;
+    -webkit-background-clip: text;
+        -moz-background-clip: text;
+            background-clip: text;
 }
 
-/* Extra - not needed */
+#quoteOptions {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: relative;
+    top: 12px;
+    color: rgb(255, 236, 187);
+    /* color: #f2f2f2; */
+    text-shadow: 1px 1px 3px #292221;;
+    visibility: hidden;   
+}
 
-#first, #second {
-    width: 100vw;
-    height: 50vh;
+#generate, #add {
+    cursor: pointer;
+}
+
+
+
+
+
+/* TODO LIST */
+
+.container {
+    width: 23vw;
+    height: 67vh;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    top: 12px;
+    left: -5px;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #333;
+    overflow-y: auto;
+    
+  }
+  
+  .app-title {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #ca5a10;
+    text-shadow: 1px 1px 2px #262222;
+
+  }
+  
+  .todo-list {
+    width: 95%;
+    list-style: none;
+    margin-bottom: 20px;
+  }
+  
+  .todo-item {
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .todo-item span {
+    /* background-color: red; */
+    flex-grow: 3;
+    width: 90%;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 17px;
+    color: #6d3a0a;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .done span {
+    text-decoration: line-through;
+    opacity: 0.3;
+  }
+  
+  input[type="checkbox"] {
+    display: none;
+  }
+  
+  .tick {
+    width: 15px;
+    height: 14px;
+    background-color: #c74d28;
+    border: 2px solid #c74d28;
+    border-radius: 50%;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-}
+    cursor: pointer;
+  }
+  
+  .tick::before {
+    color: white;
+    content: '✓';
+    font-size: 12px;
+    display: none;
+  }
+  
+  .done .tick::before {
+    display: inline;
+  }
+  
+  .delete-todo {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  #inputTodo {
+    width: 90%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
+    /* border-radius: 4px; */
+    background: rgba(204, 151, 111, 0.878);
+    outline: none;
+    border: none;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: inset 1px 1px 2px black;
+
+    position: absolute;
+    top: 405px;
+  }
+  
+#inputTodo::placeholder {
+    color: #4f2d0e;
+  }
