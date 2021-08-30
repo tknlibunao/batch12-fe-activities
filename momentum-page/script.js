@@ -73,12 +73,12 @@ function loadWorkspace() {
 }
 
 // loadSaved: displays the following on their current/saved state {time, focus, greetings, quotes, todo}
-function loadSaved() {
-    // change background
-    document.body.style.backgroundImage = `url("./assets/backgroundfinal2.png")`;
-    
+function loadSaved() {    
     // load real-time clock
     getTime();
+
+    // change background and switch
+    loadBg();
 
     // load main focus
     loadFocus();
@@ -329,7 +329,7 @@ function loadQuotes() {
 }
 
 // RESET LOGIC
-//Reset button for testing and presentation
+//Total reset button
 let resetSwitch = document.getElementById('resetPage');
 resetSwitch.addEventListener('click', () => {
     // Initialize object state and save
@@ -347,6 +347,8 @@ resetSwitch.addEventListener('click', () => {
 });
 
 // TODO LOGIC
+// loadTodo: loads the TodoTemplate and displays the items in the state.todo
+//         : listens for the user to submit the form (i.e. submit todo entry)
 function loadToDo() {
     // Load Todo Template
     let todoContainer = document.querySelector('#todo');
@@ -384,7 +386,7 @@ function loadToDo() {
                 console.log("Submitted!")
             }
             else {
-                alert("REST!")
+                alert("Oh no! It seems like you still have a lot on your plate.\nTry to tick some off of your list first. Or if not, maybe a little rest won't hurt, right? :)")
             }
         }
         // reload form input field
@@ -428,6 +430,7 @@ function createTodoList(data) {
             data["completed"] = true;
             console.log("Toggled to be true!")
             console.log("CONGRATS!!!")
+            sendCongrats();
         }
         else {
             data["completed"] = false;
@@ -474,6 +477,54 @@ function createTodoList(data) {
 //                : helpful for rerendering of stored state.todo on refreshed page
 function displayTodoList() {
     state.todo.forEach((item) => createTodoList(item));
+}
+
+// BACKGROUND (EXTRA FCN #1)
+// loadBg: changes the body background and the switch bgcolor
+function loadBg() {
+    // randomize background change
+    let x = getRandomIntInclusive(1,2);
+    switch(x) {
+        case 1:
+            document.body.style.backgroundImage = `url("./assets/backgroundfinal.png")`;
+            break;
+        case 2:
+            document.body.style.backgroundImage = `url("./assets/backgroundfinal2.png")`;
+            break;
+    }
+
+    // change switch background color
+    document.querySelector("#resetPage").style.backgroundColor = "white";
+    console.log(document.querySelector("#resetPage"));
+}
+
+// CONGRATS (EXTRA FCN #2)
+// sendCongrats: sends an encouraging prompt whenever user ticks off something off the todo list
+function sendCongrats() {
+    // returns a random integer from 1 to 5:
+    let x = getRandomIntInclusive(1, 5);
+    switch (x) {
+        case 1:
+            document.getElementById('greeting').innerHTML = `Great job, <span id=inputGreetings contenteditable=true spellcheck=false>${state.name}</span>!`;
+            break;
+        case 2:
+            document.getElementById('greeting').innerHTML = `Keep it up, <span id=inputGreetings contenteditable=true spellcheck=false>${state.name}</span>!`;
+            break;
+        case 3:
+            document.getElementById('greeting').innerHTML = `You're amazing, <span id=inputGreetings contenteditable=true spellcheck=false>${state.name}</span>!`;
+            break;
+        case 4:
+            document.getElementById('greeting').innerHTML = `Way to go, <span id=inputGreetings contenteditable=true spellcheck=false>${state.name}</span>!`;
+            break;
+        case 5:
+            document.getElementById('greeting').innerHTML = `You rock, <span id=inputGreetings contenteditable=true spellcheck=false>${state.name}</span>!`;
+            break;
+    }
+    
+    setTimeout(() => {
+        // reload the Greeting Template
+        loadGreetings();
+    }, 2500);
 }
 
 /* MAIN LOGIC */
