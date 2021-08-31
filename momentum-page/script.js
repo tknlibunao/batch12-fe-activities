@@ -33,9 +33,7 @@ function getName() {
             // save state of name
             state.name = inputName.value;
             saveState();
-            // console.log("Name: ", state.name)
 
-            // load workspace
             // simulate loading screen
             loadWorkspace();
         }
@@ -135,7 +133,6 @@ function loadFocus() {
     document.getElementById('divInputName').appendChild(newElement);
 
     // inputFocus Event Listener
-
     // Get span (main focus) element
     let inputFocus = document.getElementById('inputFocus');
 
@@ -162,7 +159,25 @@ function loadFocus() {
 //          : listens if the user focuses/blurs on/from the contenteditable element
 function loadGreetings() {
     document.getElementById('greeting').textContent = "";
-    document.getElementById('greeting').innerHTML = `Good to see you, <span id=inputGreetings contenteditable=true spellcheck=false>${state.name}</span>!`;
+    let x = getRandomIntInclusive(1,5);
+    switch(x) {
+        case 1:
+            greet = "Good to see you, ";
+            break;
+        case 2:
+            greet = "I missed you, ";
+            break;
+        case 3:
+            greet = "Looking good, ";
+            break;
+        case 4:
+            greet = "Welcome back, ";
+            break;
+        case 5:
+            greet = "Hi there, ";
+            break;
+    }
+    document.getElementById('greeting').innerHTML = greet + `<span id=inputGreetings contenteditable=true spellcheck=false>${state.name}</span>!`;
 
     // GREETINGS LOGIC
     // Get span (greetings) element
@@ -247,11 +262,9 @@ function loadQuotes() {
             else {
                 quotes.textContent = `"${state.quote}"`;
             }
-
     }
     else {
         quotes.textContent = `"We're no strangers to love... You know the rules and so do I..." -Rick Rolled`;
-
     }
 
     // Create quote options container
@@ -294,7 +307,7 @@ function loadQuotes() {
     // Generate Button Event Listener
     generateQuote.addEventListener('click', async() => {
         let nextQuote = await getQuote();
-        chooseQuote(nextQuote)
+        chooseQuote(nextQuote);
         quote.innerHTML = `"${state.quote}" -${state.author}`; 
     })
 
@@ -302,8 +315,6 @@ function loadQuotes() {
     addQuote.addEventListener('click', () => {
         quote.setAttribute("contenteditable", "true");
         quote.classList.add('is-focused');
-        console.log("State1:", state.quote, "InnerHTML1:", quote.innerHTML)
-        console.log("State2:", state.quote, "InnerHTML2:", quote.innerHTML)
         quote.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
                 if (quote.innerHTML.length > 1) {
@@ -311,9 +322,7 @@ function loadQuotes() {
                     saveState();
                     state.author = "";
                     saveState();
-                    console.log("State3:", state.quote, "InnerHTML3:", quote.innerHTML)
                     quote.innerHTML = `${state.quote}`;
-                    console.log("State4:", state.quote, "InnerHTML4:", quote.innerHTML)
                     quote.setAttribute("contenteditable", "false");
                     quote.classList.remove('is-focused');
                 }
@@ -380,10 +389,8 @@ function loadToDo() {
             if (state.todo.length < 10) {
                 let todoData = {todo: todoInput.value, completed: false}
                 state.todo.push(todoData);
-                console.log(state.todo)
                 saveState();
                 createTodoList(todoData);
-                console.log("Submitted!")
             }
             else {
                 alert("Oh no! It seems like you still have a lot on your plate.\nTry to tick some off of your list first. Or if not, maybe a little rest won't hurt, right? :)")
@@ -428,13 +435,10 @@ function createTodoList(data) {
         // toggle status of todoItem
         if (!data["completed"]) {
             data["completed"] = true;
-            console.log("Toggled to be true!")
-            console.log("CONGRATS!!!")
             sendCongrats();
         }
         else {
             data["completed"] = false;
-            console.log("Toggled to be false!")
         }
 
         saveState();
@@ -495,7 +499,6 @@ function loadBg() {
 
     // change switch background color
     document.querySelector("#resetPage").style.backgroundColor = "white";
-    console.log(document.querySelector("#resetPage"));
 }
 
 // CONGRATS (EXTRA FCN #2)
