@@ -11,3 +11,10 @@ html {
 body {
     background-color: rgba(132, 146, 182, 0.549);
 }
+
+#main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
