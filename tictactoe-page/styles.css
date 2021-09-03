@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 8vmin;
+    color: #21313f;
+}
+
+body {
+    background-color: rgba(132, 146, 182, 0.549);
+}
