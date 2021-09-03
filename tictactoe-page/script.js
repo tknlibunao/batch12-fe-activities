@@ -15,5 +15,7 @@ boxes.forEach(box => {
     box.addEventListener('click', () => {
         console.log("User clicked on", box.id)
         console.log("That is row", box.id[6], "and col", box.id[7])
+        let row = box.id[6];
+        let col = box.id[7];
     })
 })
