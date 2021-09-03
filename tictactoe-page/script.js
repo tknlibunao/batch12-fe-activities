@@ -1,15 +1,20 @@
 let boxes = document.querySelectorAll('.box');
-let boardState = [
-    [],
-    [],
-    []
-]
-
+let buttons = document.querySelectorAll('button');
 let moves = 0;
-// assume X first for now
-let player = 'X';
+let firstPlayer, secondPlayer = '';
+let boardState = [ [], [], [] ];
 
-console.log(boardState)
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+       firstPlayer = button.innerHTML;
+       if (firstPlayer === 'X') {
+           secondPlayer = 'O';
+       } else {
+           secondPlayer = 'X';
+       }
+    })
+})
+
 
 boxes.forEach(box => {
     box.addEventListener('click', () => {
@@ -21,14 +26,14 @@ boxes.forEach(box => {
         if (!(box.innerHTML === 'X' || box.innerHTML === 'O')) {
             if (moves % 2 === 0) {
                 // impending first move
-                // set player symbol on box
-                box.innerHTML = 'X';
+                // set firstplayer symbol on box
+                box.innerHTML = firstPlayer;
                 // register move
                 moves++;
             } else {
                 // other player's turn
                 // set player symbol on box
-                box.innerHTML = 'O';
+                box.innerHTML = secondPlayer;
                 // register move
                 moves++;
             }
