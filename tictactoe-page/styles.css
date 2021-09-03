@@ -62,4 +62,5 @@ body {
     display: grid;
     justify-content: center;
     align-content: center;
+    cursor: pointer;
 }
