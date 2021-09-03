@@ -58,3 +58,8 @@ body {
                 rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 
+.box {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
