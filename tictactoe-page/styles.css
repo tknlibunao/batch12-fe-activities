@@ -5,6 +5,7 @@
 
 html {
     font-size: 8vmin;
+    font-family: 'Roboto';
     color: #21313f;
 }
 
@@ -63,4 +64,5 @@ body {
     justify-content: center;
     align-content: center;
     cursor: pointer;
+    border: 1px solid white;
 }
