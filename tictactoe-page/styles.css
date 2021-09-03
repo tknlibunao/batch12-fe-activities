@@ -26,3 +26,9 @@ body {
     align-items: center;
     text-align: center;
 }
+
+#container {
+    background-color: #485868;
+    width: 75vmin;
+    height: 75vmin;
+}
