@@ -1,7 +1,7 @@
 let boxes = document.querySelectorAll('.box');
 let charBtns = document.querySelectorAll('.char-btn');
 let divOptions = document.querySelector('#options');
-let divHistory = document.querySelector('#history');
+let divAnnounce = document.querySelector('#announce');
 
 // State variables
 let moves = 0;
@@ -11,15 +11,21 @@ let boardState = [ [], [], [] ];
 
 charBtns.forEach(button => {
     button.addEventListener('click', () => {
-        console.log("Clicked button!!!", button)
-        firstPlayer = button.innerHTML;
-        console.log("Player is", button.innerHTML)
-        secondPlayer = firstPlayer === 'X' ? 'O' : 'X';
         charChosen = true;
+        firstPlayer = button.innerHTML;
+        secondPlayer = firstPlayer === 'X' ? 'O' : 'X';
+        divAnnounce.innerHTML = `${firstPlayer}'s turn`;
+        divOptions.innerHTML = `<div id="history">
+                                    <div class="left">
+                                        <button class='char-move' disabled>Prev</button>
+                                    </div>
+                                    <div class="right">
+                                        <button class='char-move' disabled>Next</button>
+                                    </div>
+                                </div>`
         boxes.forEach(box => {
             box.style.cursor = "pointer";
-        })
-        divOptions.innerHTML = `${firstPlayer}'s turn`;
+        })  
     })
 })
 
@@ -31,7 +37,7 @@ boxes.forEach(box => {
             // check if box is already filled
             if (!(box.innerHTML === 'X' || box.innerHTML === 'O')) {
                 box.innerHTML = moves % 2 === 0 ? firstPlayer : secondPlayer;
-                divOptions.innerHTML = moves % 2 === 0 ? `${secondPlayer}'s turn` : `${firstPlayer}'s turn`
+                divAnnounce.innerHTML = moves % 2 === 0 ? `${secondPlayer}'s turn` : `${firstPlayer}'s turn`
                 moves++;
             }
         }
