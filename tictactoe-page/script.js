@@ -5,10 +5,11 @@ let divAnnounce = document.querySelector('#announce');
 
 // State variables
 let moves = 0;
-let charChosen = false;
+let charChosen, finish = false;
 let firstPlayer, secondPlayer = '';
 let boardState = [ [], [], [] ];
-
+let moveHistory = [];
+let dummy = [];
 charBtns.forEach(button => {
     button.addEventListener('click', () => {
         charChosen = true;
@@ -41,12 +42,26 @@ boxes.forEach(box => {
             if (!(box.innerHTML === 'X' || box.innerHTML === 'O')) {
                 box.innerHTML = moves % 2 === 0 ? firstPlayer : secondPlayer;
                 divAnnounce.innerHTML = moves % 2 === 0 ? `${secondPlayer}'s turn` : `${firstPlayer}'s turn`
-                moves++;
-
                 boardState[row][col] = box.innerHTML;
-                console.log(boardState)
+                console.log(`Board state ${moves + 1}`, boardState)
+
+            } else {
+                console.log("Cell already filled!")
             }
+            let dummy = boardState.map(arr => {
+                return arr.slice()
+            })
+            moveHistory.push(dummy);
+            console.log(`Move ${moves}`, moveHistory)
+            moves++;
+        } else {
+            console.log("Choose character first!")
         }
-        
     })
 })
+
+function checkFinish(moves, moveHistory) {
+    if (moves === 8) {
+        console.log(moveHistory)
+    }
+}
