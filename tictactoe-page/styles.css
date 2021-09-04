@@ -67,8 +67,20 @@ body {
     display: grid;
     justify-content: center;
     align-content: center;
-    cursor: pointer;
-    border: 1px solid white;
+    /* cursor: pointer; */
+}
+
+#index-00, #index-01, #index-10, #index-11 {
+    border-right: 1vmin solid white;
+    border-bottom: 1vmin solid white;
+}
+
+#index-20, #index-21 {
+    border-right: 1vmin solid white;
+}
+
+#index-02, #index-12 {
+    border-bottom: 1vmin solid white;
 }
 
 #options {
@@ -82,7 +94,7 @@ body {
     align-items: center;
 }
 
-#left, #right {
+.left, .right {
     background-color: thistle;
     width: 36vmin;
     height: 8vmin;
@@ -99,4 +111,8 @@ button {
     background: transparent;
     background-color: #f2f2f2;
     outline: none;
+}
+
+.hidden {
+    opacity: 0;
 }
