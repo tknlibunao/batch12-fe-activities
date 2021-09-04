@@ -32,6 +32,9 @@ charBtns.forEach(button => {
 
 boxes.forEach(box => {
     box.addEventListener('click', () => {
+        let row = box.id[6];
+        let col = box.id[7];
+
         // check if player has been selected
         if (charChosen) {
             // check if box is already filled
@@ -39,6 +42,9 @@ boxes.forEach(box => {
                 box.innerHTML = moves % 2 === 0 ? firstPlayer : secondPlayer;
                 divAnnounce.innerHTML = moves % 2 === 0 ? `${secondPlayer}'s turn` : `${firstPlayer}'s turn`
                 moves++;
+
+                boardState[row][col] = box.innerHTML;
+                console.log(boardState)
             }
         }
         
