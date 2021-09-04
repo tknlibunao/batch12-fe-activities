@@ -43,8 +43,6 @@ boxes.forEach(box => {
                 box.innerHTML = moves % 2 === 0 ? firstPlayer : secondPlayer;
                 divAnnounce.innerHTML = moves % 2 === 0 ? `${secondPlayer}'s turn` : `${firstPlayer}'s turn`
                 boardState[row][col] = box.innerHTML;
-                // console.log(`Board state ${moves + 1}`, boardState)
-
             } else {
                 console.log("Cell already filled!")
             }
@@ -52,34 +50,10 @@ boxes.forEach(box => {
                 return arr.slice()
             })
             moveHistory.push(dummy);
-            // console.log(`Move ${moves}`, moveHistory)
-            checkFinish(moves, moveHistory)
             moves++;
         } else {
             console.log("Choose character first!")
         }
     })
 })
-
-
-
-function checkFinish(moves, moveHistory) {
-    if (moves === 8) {
-        let charMove = document.querySelectorAll('.char-move');
-        let ctr = 8;
-        for (i = 0; i < moveHistory.length; i++) {
-            console.log(`Move ${i+1}:`, moveHistory[i])
-        }
-        console.log(charMove[0])
-        charMove[0].disabled = false;
-
-        charMove[0].addEventListener('click', () => {
-            boxes.forEach(box => {
-                console.log("Success!", box.id[6], box.id[7])
-            })
-        })
-    }
-
-    
-}
 
