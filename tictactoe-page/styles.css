@@ -83,7 +83,7 @@ body {
     border-bottom: 1vmin solid white;
 }
 
-#options {
+.divbtn {
     width: 75vmin;
     height: 10vmin;
     position: absolute;
