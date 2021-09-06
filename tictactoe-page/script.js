@@ -3,22 +3,37 @@ let charBtns = document.querySelectorAll('.char-btn');
 let divOptions = document.querySelector('#options');
 let divAnnounce = document.querySelector('#announce');
 
-// State variables
+// Game parameters
 let moveCount = 0;
 let firstPlayer, secondPlayer = '';
 let boardState = [];
+const winningMoves = [
+    // row
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+
+    // column
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+
+    // diagonal
+    [0, 4, 8],
+    [2, 4, 6]
+];
+
+console.log(winningMoves)
 
 // For now, game starts when user chooses a character (presses 'X' or 'O' button)
 charBtns.forEach(button => {
     button.addEventListener('click', () => {
         setFirstPlayer(button);
-        
+        // listen for each box
         boxes.forEach(box => {
             box.style.cursor = "pointer";
             box.addEventListener('click', userClickedBox)
         })
-
-
     })
 })
 
