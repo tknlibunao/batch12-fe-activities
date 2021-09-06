@@ -96,7 +96,6 @@ function checkWinner(moveCount) {
             let box2 = boxes[winningMoves[winCase][1]].innerText;
             let box3 = boxes[winningMoves[winCase][2]].innerText;
             if (box1 === currentTurn && box2 === currentTurn && box3 === currentTurn) {
-                // draw = false;
                 return endGame(currentTurn, draw)
             }
         }
@@ -108,3 +107,14 @@ function checkWinner(moveCount) {
     // checkDraw(currentTurn)
 }
 
+function endGame(currentTurn, draw) {
+    boxes.forEach(box => {
+        box.removeEventListener('click', userClickedBox)
+        box.classList.remove("pointer")
+    })
+    
+    divAnnounce.innerText = draw ? `Draw!` : `Player ${currentTurn} wins!`;
+
+    // updateScore()
+    // enableViewHistory
+}
