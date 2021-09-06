@@ -163,8 +163,8 @@ function showNext() {
     if (moveCount < boardState.length+1) {
         if (moveCount === boardState.length) {
             nextBtn.disabled = true;
-            prevBtn.disabled = false;
         }
+        prevBtn.disabled = false;
         console.log("Move count: ", moveCount, boardState.length)
         let moveHistory = boardState[moveCount-1]
         displayMove(moveHistory)
