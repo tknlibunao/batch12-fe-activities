@@ -57,7 +57,7 @@ function userClickedBox(event) {
         this.innerHTML = moveCount % 2 === 0 ? firstPlayer : secondPlayer;
         divAnnounce.innerHTML = moveCount % 2 === 0 ? `${secondPlayer}'s turn` : `${firstPlayer}'s turn`
         saveMove()
-        // checkWinner()
+        checkWinner(moveCount)
         moveCount++;
     } else {
         console.log("Cell already filled!")
@@ -81,4 +81,9 @@ function saveMove() {
 
     boardState.push([row1, row2, row3])
     console.log("BoardState:", boardState)
+}
+
+function checkWinner(moveCount) {
+    let currentTurn = moveCount % 2 === 0 ? firstPlayer : secondPlayer;
+    console.log("Currently checking for win of:", currentTurn)
 }
