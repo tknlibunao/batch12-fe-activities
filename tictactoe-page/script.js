@@ -5,6 +5,9 @@ let divAnnounce = document.querySelector('#announce');
 
 // Game parameters
 let moveCount = 0;
+let xScore = 0;
+let oScore = 0;
+let draw = false;
 let firstPlayer, secondPlayer = '';
 let boardState = [];
 const winningMoves = [
@@ -31,7 +34,7 @@ charBtns.forEach(button => {
         setFirstPlayer(button);
         // listen for each box
         boxes.forEach(box => {
-            box.style.cursor = "pointer";
+            box.classList.add("pointer")
             box.addEventListener('click', userClickedBox)
         })
     })
@@ -86,4 +89,22 @@ function saveMove() {
 function checkWinner(moveCount) {
     let currentTurn = moveCount % 2 === 0 ? firstPlayer : secondPlayer;
     console.log("Currently checking for win of:", currentTurn)
+
+    for (let index = 0; index < boxes.length; index++) {
+        for (winCase = 0; winCase < winningMoves.length; winCase++) {
+            let box1 = boxes[winningMoves[winCase][0]].innerText;
+            let box2 = boxes[winningMoves[winCase][1]].innerText;
+            let box3 = boxes[winningMoves[winCase][2]].innerText;
+            if (box1 === currentTurn && box2 === currentTurn && box3 === currentTurn) {
+                // draw = false;
+                return endGame(currentTurn, draw)
+            }
+        }
+    }
+
+    // if it reaches this, that means there is no winner yet
+    // therefore, check if all boxes are already filled
+    // in which case, there is a draw
+    // checkDraw(currentTurn)
 }
+
