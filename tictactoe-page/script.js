@@ -46,12 +46,14 @@ function setFirstPlayer(button) {
     divAnnounce.innerHTML = `${firstPlayer}'s turn`;
     divOptions.innerHTML = `<div id="history">
                                 <div class="left">
-                                    <button class='char-move' disabled>Prev</button>
+                                    <button class='char-move' id='prevBtn' disabled>Prev</button>
                                 </div>
                                 <div class="right">
-                                    <button class='char-move' disabled>Next</button>
+                                    <button class='char-move' id='nextBtn' disabled>Next</button>
                                 </div>
                             </div>`
+    let prevBtn = document.querySelector('#prevBtn');
+    let nextBtn = document.querySelector('#nextBtn');
 }
 
 function userClickedBox(event) {
@@ -116,7 +118,7 @@ function endGame(currentTurn, draw) {
     divAnnounce.innerText = draw ? `Draw!` : `Player ${currentTurn} wins!`;
 
     // updateScore()
-    // enableViewHistory
+    enableViewHistory()
 }
 
 function checkDraw(currentTurn) {
@@ -131,4 +133,15 @@ function checkDraw(currentTurn) {
         draw = true;
         return endGame(currentTurn, draw)
     }
+}
+
+function enableViewHistory() {
+    console.log("View History")
+    prevBtn.removeAttribute('disabled')
+    prevBtn.addEventListener('click', showPrev)
+    // nextBtn.removeAttribute('disabled')
+}
+
+function showPrev() {
+    console.log("Move count: ", moveCount)
 }
