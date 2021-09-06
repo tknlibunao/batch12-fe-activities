@@ -22,3 +22,16 @@ charBtns.forEach(button => {
     })
 })
 
+function setFirstPlayer(button) {
+    firstPlayer = button.innerHTML;
+    secondPlayer = firstPlayer === 'X' ? 'O' : 'X';
+    divAnnounce.innerHTML = `${firstPlayer}'s turn`;
+    divOptions.innerHTML = `<div id="history">
+                                <div class="left">
+                                    <button class='char-move' disabled>Prev</button>
+                                </div>
+                                <div class="right">
+                                    <button class='char-move' disabled>Next</button>
+                                </div>
+                            </div>`
+}
