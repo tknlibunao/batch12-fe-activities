@@ -104,7 +104,7 @@ function checkWinner(moveCount) {
     // if it reaches this, that means there is no winner yet
     // therefore, check if all boxes are already filled
     // in which case, there is a draw
-    // checkDraw(currentTurn)
+    checkDraw(currentTurn)
 }
 
 function endGame(currentTurn, draw) {
@@ -117,4 +117,18 @@ function endGame(currentTurn, draw) {
 
     // updateScore()
     // enableViewHistory
+}
+
+function checkDraw(currentTurn) {
+    let boxFilled = 0;
+    boxes.forEach(box => {
+        if (box.innerText === 'X' || box.innerText === 'O') {
+            boxFilled++;
+        }
+    })
+
+    if (boxFilled === 9) {
+        draw = true;
+        return endGame(currentTurn, draw)
+    }
 }
