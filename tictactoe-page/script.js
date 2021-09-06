@@ -170,3 +170,19 @@ function showNext() {
         displayMove(moveHistory)
     }
 }
+
+function displayMove(moveHistory) {
+    let moves = [];
+    moveHistory.forEach(row => {
+        row.forEach(move => {
+            moves.push(move)
+        })
+    })
+
+    console.log("Moves:", moves)
+
+    boxes.forEach((box, index) => {
+        box.innerText = '';
+        box.innerText = moves[index];
+    })
+}
