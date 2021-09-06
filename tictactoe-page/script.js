@@ -35,3 +35,16 @@ function setFirstPlayer(button) {
                                 </div>
                             </div>`
 }
+
+function userClickedBox(event) {
+    // check if box is already filled
+    if (!(this.innerHTML === 'X' || this.innerHTML === 'O')) {
+        this.innerHTML = moveCount % 2 === 0 ? firstPlayer : secondPlayer;
+        divAnnounce.innerHTML = moveCount % 2 === 0 ? `${secondPlayer}'s turn` : `${firstPlayer}'s turn`
+        saveMove()
+        // checkWinner()
+        moveCount++;
+    } else {
+        console.log("Cell already filled!")
+    }
+}
