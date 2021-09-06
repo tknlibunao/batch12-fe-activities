@@ -136,12 +136,24 @@ function checkDraw(currentTurn) {
 }
 
 function enableViewHistory() {
-    console.log("View History")
-    prevBtn.removeAttribute('disabled')
+    console.log(`View History, moveCount = ${moveCount}`)
+    prevBtn.disabled = false;
     prevBtn.addEventListener('click', showPrev)
-    // nextBtn.removeAttribute('disabled')
 }
 
 function showPrev() {
-    console.log("Move count: ", moveCount)
+    moveCount -= 1;
+    console.log("Move count: ", moveCount, boardState.length)
+    if(moveCount > 0) {
+        if (moveCount === 1) {
+            prevBtn.disabled = true;
+        }
+        if (moveCount === boardState.length-1) {
+            nextBtn.disabled = false;
+            nextBtn.addEventListener('click', showNext)
+        }
+        console.log(`Move #${moveCount}: ${boardState[moveCount]}`)
+        let moveHistory = boardState[moveCount-1]
+        displayMove(moveHistory)
+    }
 }
