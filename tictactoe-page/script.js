@@ -48,3 +48,22 @@ function userClickedBox(event) {
         console.log("Cell already filled!")
     }
 }
+
+function saveMove() {
+    let row1 = []
+    let row2 = []
+    let row3 = []
+
+    boxes.forEach((box, index) => {
+        if (index < 3) {
+            row1.push(box.innerText)
+        } else if (index >= 3 && index <= 5) {
+            row2.push(box.innerText)
+        } else {
+            row3.push(box.innerText)
+        }
+    })
+
+    boardState.push([row1, row2, row3])
+    console.log("BoardState:", boardState)
+}
