@@ -1,11 +1,15 @@
 let boxes = document.querySelectorAll('.box');
 let modal = document.querySelector('.modal-container')
 let charBtns = document.querySelectorAll('.char-btn');
+let prevBtn = document.querySelector('#prevBtn');
+let nextBtn = document.querySelector('#nextBtn');
+let resetBtn = document.querySelector('#resetBtn');
 let divOptions = document.querySelector('#options');
 let divAnnounce = document.querySelector('#announce');
 let xScoreBoard = document.querySelector('#xScore')
 let oScoreBoard = document.querySelector('#oScore')
 
+resetBtn.addEventListener('click', resetGame)
 
 // Game parameters
 let moveCount = 0;
@@ -46,13 +50,6 @@ function setFirstPlayer(button) {
     firstPlayer = button.innerHTML;
     secondPlayer = firstPlayer === 'X' ? 'O' : 'X';
     divAnnounce.innerHTML = `${firstPlayer}'s turn`;
-    divOptions.innerHTML = `<div id="history">
-                                <div class="reset">
-                                    <button class='char-move' id='resetBtn'>⟳</button>
-                                </div>
-                            </div>`
-    let resetBtn = document.querySelector('#resetBtn');
-    resetBtn.addEventListener('click', resetGame)
 }
 
 function resetGame() {
@@ -121,7 +118,6 @@ function endGame() {
 
     updateScore()
     showHistoryButtons();
-    // enableViewHistory()
 }
 
 function updateScore() {
@@ -151,12 +147,6 @@ function checkDraw() {
         winIndex = [];
         return endGame(currentTurn, draw)
     }
-}
-
-function enableViewHistory() {
-    console.log(`View History, moveCount = ${moveCount}`)
-    prevBtn.disabled = false;
-    prevBtn.addEventListener('click', showPrev)
 }
 
 function showPrev() {
@@ -225,23 +215,8 @@ function toggleWin(action) {
 }
 
 function showHistoryButtons() {
-    divOptions.innerHTML = `<div id="history">
-                                <div class="prev">
-                                    <button class='char-move' id='prevBtn' disabled>◀</button>
-                                </div>
-                                <div class="reset">
-                                    <button class='char-move' id='resetBtn'>⟳</button>
-                                </div>
-                                <div class="next">
-                                    <button class='char-move' id='nextBtn' disabled>▶</button>
-                                </div>
-                            </div>`
-    let prevBtn = document.querySelector('#prevBtn');
+    prevBtn.classList.remove('hidden')
+    nextBtn.classList.remove('hidden')
     prevBtn.disabled = false;
     prevBtn.addEventListener('click', showPrev)
-
-    let nextBtn = document.querySelector('#nextBtn');
-
-    let resetBtn = document.querySelector('#resetBtn');
-    resetBtn.addEventListener('click', resetGame)
 }
