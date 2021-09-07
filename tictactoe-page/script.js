@@ -48,10 +48,13 @@ function setFirstPlayer(button) {
     secondPlayer = firstPlayer === 'X' ? 'O' : 'X';
     divAnnounce.innerHTML = `${firstPlayer}'s turn`;
     divOptions.innerHTML = `<div id="history">
-                                <div class="left">
+                                <div class="prev">
                                     <button class='char-move' id='prevBtn' disabled>◀</button>
                                 </div>
-                                <div class="right">
+                                <div class="reset">
+                                    <button class='char-move' id='resetBtn'>⟳</button>
+                                </div>
+                                <div class="next">
                                     <button class='char-move' id='nextBtn' disabled>▶</button>
                                 </div>
                             </div>`
