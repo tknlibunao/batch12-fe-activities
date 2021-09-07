@@ -9,8 +9,12 @@
 </head>
 <body>
     <main id="main">
+        <div class="start-game">
+            <h3>TIC TAC TOE</h3>
+            <button id='startBtn'>START GAME</button>
+        </div>
         <div class="modal-container">
-            <h3>CHOOSE YOUR PLAYER</h1>
+            <h3>CHOOSE YOUR PLAYER</h3>
             <div class="modal">
                 <div class="left">
                     <button class='char-btn'>X</button>
@@ -70,6 +74,17 @@
                 <div class="right">
                     <button class='char-btn'>O</button>
                 </div> -->
+                <div id="history">
+                    <div class="prev">
+                        <button class='char-move hidden' id='prevBtn' disabled>◀</button>
+                    </div>
+                    <div class="reset">
+                        <button class='char-move' id='resetBtn'>⟳</button>
+                    </div>
+                    <div class="next">
+                        <button class='char-move hidden' id='nextBtn' disabled>▶</button>
+                    </div>
+                </div>
             </div>
         </div>
         
