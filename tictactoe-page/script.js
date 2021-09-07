@@ -147,17 +147,12 @@ function checkDraw() {
 function showPrev() {
     toggleWin('hide')
     moveCount -= 1;
-    console.log("Move count: ", moveCount, boardState.length)
     if(moveCount > 0) {
         if (moveCount === 1) {
+            // it is the first move
             prevBtn.disabled = true;
         }
-        if (moveCount === boardState.length-1) {
-            nextBtn.disabled = false;
-            
-        }
-        console.log(`Move #${moveCount}: ${boardState[moveCount]}`)
-        moveHistory = boardState[moveCount-1]
+        nextBtn.disabled = false; 
         displayMove()
     }
 }
@@ -166,24 +161,24 @@ function showNext() {
     moveCount += 1;
     if (moveCount < boardState.length+1) {
         if (moveCount === boardState.length) {
+            // it is the last move
             nextBtn.disabled = true;
             toggleWin('show');
         }
         prevBtn.disabled = false;
-        moveHistory = boardState[moveCount-1]
         displayMove()
     }
 }
 
 function displayMove() {
     let moves = [];
+    // store moveHistory into 1D array
+    moveHistory = boardState[moveCount-1]
     moveHistory.forEach(row => {
         row.forEach(move => {
             moves.push(move)
         })
     })
-
-    console.log("Moves:", moves)
 
     boxes.forEach((box, index) => {
         box.innerText = '';
