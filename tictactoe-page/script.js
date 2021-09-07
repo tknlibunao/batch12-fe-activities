@@ -13,6 +13,7 @@ let oScore = 0;
 let draw = false;
 let firstPlayer = '';
 let secondPlayer = '';
+let currentTurn = '';
 let winIndex = [];
 let boardState = [];
 const winningMoves = [
@@ -31,8 +32,6 @@ const winningMoves = [
     [2, 4, 6]
 ];
 
-console.log(winningMoves)
-
 // For now, game starts when user chooses a character (presses 'X' or 'O' button)
 charBtns.forEach(button => {
     button.addEventListener('click', () => {
@@ -46,11 +45,9 @@ function setFirstPlayer(button) {
     secondPlayer = firstPlayer === 'X' ? 'O' : 'X';
     divAnnounce.innerHTML = `${firstPlayer}'s turn`;
     divOptions.innerHTML = `<div id="history">
-                                
                                 <div class="reset">
                                     <button class='char-move' id='resetBtn'>⟳</button>
                                 </div>
-                                
                             </div>`
     let resetBtn = document.querySelector('#resetBtn');
     resetBtn.addEventListener('click', resetGame)
@@ -67,7 +64,7 @@ function userClickedBox() {
         this.innerHTML = moveCount % 2 === 0 ? firstPlayer : secondPlayer;
         divAnnounce.innerHTML = moveCount % 2 === 0 ? `${secondPlayer}'s turn` : `${firstPlayer}'s turn`
         saveMove()
-        checkWinner(moveCount)
+        checkWinner()
         moveCount++;
     } else {
         console.log("Cell already filled!")
@@ -90,11 +87,10 @@ function saveMove() {
     })
 
     boardState.push([row1, row2, row3])
-    console.log("BoardState:", boardState)
 }
 
-function checkWinner(moveCount) {
-    let currentTurn = moveCount % 2 === 0 ? firstPlayer : secondPlayer;
+function checkWinner() {
+    currentTurn = moveCount % 2 === 0 ? firstPlayer : secondPlayer;
     console.log("Currently checking for win of:", currentTurn)
 
     for (let index = 0; index < boxes.length; index++) {
@@ -102,42 +98,31 @@ function checkWinner(moveCount) {
             let box1 = boxes[winningMoves[winCase][0]].innerText;
             let box2 = boxes[winningMoves[winCase][1]].innerText;
             let box3 = boxes[winningMoves[winCase][2]].innerText;
-            winIndex = [ winningMoves[winCase][0], winningMoves[winCase][1], winningMoves[winCase][2] ]
+
             if (box1 === currentTurn && box2 === currentTurn && box3 === currentTurn) {
                 winIndex = [ winningMoves[winCase][0], winningMoves[winCase][1], winningMoves[winCase][2] ]
-                return endGame(currentTurn, draw)
+                return endGame()
             }
         }
     }
 
     // if it reaches this, that means there is no winner yet
-    // therefore, check if all boxes are already filled
-    // in which case, there is a draw
-    checkDraw(currentTurn)
+    // therefore, check for draw
+    checkDraw()
 }
 
-function endGame(currentTurn, draw) {
-    showHistoryButtons();
+function endGame() {
     toggleBoxes('disable')
     toggleWin('show')
     divAnnounce.innerText = draw ? `Draw!` : `Player ${currentTurn} wins!`;
     console.log("Win Index:", winIndex)
 
-    updateScore(currentTurn, draw)
-    enableViewHistory()
+    updateScore()
+    showHistoryButtons();
+    // enableViewHistory()
 }
 
-function toggleWin(action) {
-    boxes.forEach((box, index) => {
-        winIndex.forEach(win => {
-            if (index === win) {
-                action === 'show' ? box.classList.add('winbox') : box.classList.remove('winbox')
-            }
-        })
-    })
-}
-
-function updateScore(currentTurn, draw) {
+function updateScore() {
     if (!draw) {
         if (currentTurn === 'X') {
             xScore++;
@@ -151,7 +136,7 @@ function updateScore(currentTurn, draw) {
     }
 }
 
-function checkDraw(currentTurn) {
+function checkDraw() {
     let boxFilled = 0;
     boxes.forEach(box => {
         if (box.innerText === 'X' || box.innerText === 'O') {
@@ -227,6 +212,16 @@ function toggleBoxes(action) {
     })
 }
 
+function toggleWin(action) {
+    boxes.forEach((box, index) => {
+        winIndex.forEach(win => {
+            if (index === win) {
+                action === 'show' ? box.classList.add('winbox') : box.classList.remove('winbox')
+            }
+        })
+    })
+}
+
 function showHistoryButtons() {
     divOptions.innerHTML = `<div id="history">
                                 <div class="prev">
@@ -240,7 +235,11 @@ function showHistoryButtons() {
                                 </div>
                             </div>`
     let prevBtn = document.querySelector('#prevBtn');
+    prevBtn.disabled = false;
+    prevBtn.addEventListener('click', showPrev)
+
     let nextBtn = document.querySelector('#nextBtn');
+
     let resetBtn = document.querySelector('#resetBtn');
     resetBtn.addEventListener('click', resetGame)
 }
