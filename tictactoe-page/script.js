@@ -25,6 +25,7 @@ let secondPlayer = '';
 let currentTurn = '';
 let winIndex = [];
 let boardState = [];
+let moveHistory = [];
 const winningMoves = [
     // row win
     [0, 1, 2],
@@ -46,7 +47,7 @@ charBtns.forEach(button => {
     button.addEventListener('click', () => {
         modal.style.display = 'none';
         setFirstPlayer(button);
-        toggleBoxes('enable')
+        toggleBoxes('enable');
     })
 })
 
@@ -166,8 +167,8 @@ function showPrev() {
             
         }
         console.log(`Move #${moveCount}: ${boardState[moveCount]}`)
-        let moveHistory = boardState[moveCount-1]
-        displayMove(moveHistory)
+        moveHistory = boardState[moveCount-1]
+        displayMove()
     }
 }
 
@@ -176,16 +177,15 @@ function showNext() {
     if (moveCount < boardState.length+1) {
         if (moveCount === boardState.length) {
             nextBtn.disabled = true;
-            toggleWin('show')
+            toggleWin('show');
         }
         prevBtn.disabled = false;
-        console.log("Move count: ", moveCount, boardState.length)
-        let moveHistory = boardState[moveCount-1]
-        displayMove(moveHistory)
+        moveHistory = boardState[moveCount-1]
+        displayMove()
     }
 }
 
-function displayMove(moveHistory) {
+function displayMove() {
     let moves = [];
     moveHistory.forEach(row => {
         row.forEach(move => {
