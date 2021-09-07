@@ -1,3 +1,4 @@
+/* DOM DECLARATIONS */
 let boxes = document.querySelectorAll('.box');
 let modal = document.querySelector('.modal-container')
 let charBtns = document.querySelectorAll('.char-btn');
@@ -9,9 +10,12 @@ let divAnnounce = document.querySelector('#announce');
 let xScoreBoard = document.querySelector('#xScore')
 let oScoreBoard = document.querySelector('#oScore')
 
+/* EVENT LISTENERS */
 resetBtn.addEventListener('click', resetGame)
+prevBtn.addEventListener('click', showPrev)
+nextBtn.addEventListener('click', showNext)
 
-// Game parameters
+/* GAME PARAMETERS */
 let moveCount = 0;
 let xScore = 0;
 let oScore = 0;
@@ -22,17 +26,17 @@ let currentTurn = '';
 let winIndex = [];
 let boardState = [];
 const winningMoves = [
-    // row
+    // row win
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
 
-    // column
+    // column win
     [0, 3, 6],
     [1, 4, 7],
     [2, 5, 8],
 
-    // diagonal
+    // diagonal win
     [0, 4, 8],
     [2, 4, 6]
 ];
@@ -159,7 +163,7 @@ function showPrev() {
         }
         if (moveCount === boardState.length-1) {
             nextBtn.disabled = false;
-            nextBtn.addEventListener('click', showNext)
+            
         }
         console.log(`Move #${moveCount}: ${boardState[moveCount]}`)
         let moveHistory = boardState[moveCount-1]
@@ -218,5 +222,4 @@ function showHistoryButtons() {
     prevBtn.classList.remove('hidden')
     nextBtn.classList.remove('hidden')
     prevBtn.disabled = false;
-    prevBtn.addEventListener('click', showPrev)
 }
