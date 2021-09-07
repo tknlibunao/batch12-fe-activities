@@ -211,15 +211,26 @@ function displayMove(moveHistory) {
 }
 
 function toggleBoxes(action) {
-    if (action === 'enable') {
-        boxes.forEach(box => {
-            box.classList.add("pointer")
-            box.addEventListener('click', userClickedBox)
-        })
-    } else if (action === 'disable') {
-        boxes.forEach(box => {
-            box.classList.remove("pointer")
-            box.removeEventListener('click', userClickedBox)
-        })
-    }
+    boxes.forEach(box => {
+        action === 'enable' ? box.classList.add("pointer") : box.classList.remove("pointer")
+        action === 'enable' ? box.addEventListener('click', userClickedBox) : box.removeEventListener('click', userClickedBox)
+    })
+}
+
+function showHistoryButtons() {
+    divOptions.innerHTML = `<div id="history">
+                                <div class="prev">
+                                    <button class='char-move' id='prevBtn' disabled>◀</button>
+                                </div>
+                                <div class="reset">
+                                    <button class='char-move' id='resetBtn'>⟳</button>
+                                </div>
+                                <div class="next">
+                                    <button class='char-move' id='nextBtn' disabled>▶</button>
+                                </div>
+                            </div>`
+    let prevBtn = document.querySelector('#prevBtn');
+    let nextBtn = document.querySelector('#nextBtn');
+    let resetBtn = document.querySelector('#resetBtn');
+    resetBtn.addEventListener('click', resetGame)
 }
