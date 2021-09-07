@@ -58,12 +58,10 @@ function setFirstPlayer(button) {
 }
 
 function resetGame() {
-    console.log("RESET THE GAME!!!")
     location.reload()
 }
 
 function userClickedBox() {
-    // check if box is already filled
     if (!(this.innerHTML === 'X' || this.innerHTML === 'O')) {
         this.innerHTML = moveCount % 2 === 0 ? firstPlayer : secondPlayer;
         divAnnounce.innerHTML = moveCount % 2 === 0 ? `${secondPlayer}'s turn` : `${firstPlayer}'s turn`
@@ -95,7 +93,6 @@ function saveMove() {
 
 function checkWinner() {
     currentTurn = moveCount % 2 === 0 ? firstPlayer : secondPlayer;
-    console.log("Currently checking for win of:", currentTurn)
 
     for (let index = 0; index < boxes.length; index++) {
         for (winCase = 0; winCase < winningMoves.length; winCase++) {
@@ -110,17 +107,14 @@ function checkWinner() {
         }
     }
 
-    // if it reaches this, that means there is no winner yet
-    // therefore, check for draw
+    // if it reaches this, that means there is no winner yet therefore, check for draw
     checkDraw()
 }
 
 function endGame() {
+    divAnnounce.innerText = draw ? `Draw!` : `Player ${currentTurn} wins!`;
     toggleBoxes('disable')
     toggleWin('show')
-    divAnnounce.innerText = draw ? `Draw!` : `Player ${currentTurn} wins!`;
-    console.log("Win Index:", winIndex)
-
     updateScore()
     showHistoryButtons();
 }
@@ -129,11 +123,9 @@ function updateScore() {
     if (!draw) {
         if (currentTurn === 'X') {
             xScore++;
-            console.log(`X: ${xScore}`)
             xScoreBoard.innerText = `${xScore}`
         } else {
             oScore++;
-            console.log(`O: ${oScore}`)
             oScoreBoard.innerText = `${oScore}`
         }
     }
@@ -142,9 +134,7 @@ function updateScore() {
 function checkDraw() {
     let boxFilled = 0;
     boxes.forEach(box => {
-        if (box.innerText === 'X' || box.innerText === 'O') {
-            boxFilled++;
-        }
+        boxFilled = (box.innerText === 'X' || box.innerText === 'O') ? boxFilled + 1 : boxFilled;
     })
 
     if (boxFilled === 9) {
