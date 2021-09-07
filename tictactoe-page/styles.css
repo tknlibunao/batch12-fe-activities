@@ -144,3 +144,7 @@ button {
 .pointer {
     cursor: pointer;
 }
+
+.winbox {
+    background-color: yellow;
+}
