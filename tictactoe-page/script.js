@@ -45,6 +45,18 @@ const winningMoves = [
     [2, 4, 6]
 ];
 
+function startGame() {
+    // For now, game starts when user chooses a character (presses 'X' or 'O' button)
+    startModal.style.display = 'none';
+    charBtns.forEach(button => {
+        button.addEventListener('click', () => {
+            modal.style.display = 'none';
+            setFirstPlayer(button);
+            toggleClick('enable');
+        })
+    })
+}
+
 // setFirstPlayer: designates who the first turn is according to the button pressed
 function setFirstPlayer(button) {
     firstPlayer = button.innerHTML;
