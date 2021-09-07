@@ -2,6 +2,9 @@ let boxes = document.querySelectorAll('.box');
 let charBtns = document.querySelectorAll('.char-btn');
 let divOptions = document.querySelector('#options');
 let divAnnounce = document.querySelector('#announce');
+let xScoreBoard = document.querySelector('#xScore')
+let oScoreBoard = document.querySelector('#oScore')
+
 
 // Game parameters
 let moveCount = 0;
@@ -46,10 +49,10 @@ function setFirstPlayer(button) {
     divAnnounce.innerHTML = `${firstPlayer}'s turn`;
     divOptions.innerHTML = `<div id="history">
                                 <div class="left">
-                                    <button class='char-move' id='prevBtn' disabled>Prev</button>
+                                    <button class='char-move' id='prevBtn' disabled>◀</button>
                                 </div>
                                 <div class="right">
-                                    <button class='char-move' id='nextBtn' disabled>Next</button>
+                                    <button class='char-move' id='nextBtn' disabled>▶</button>
                                 </div>
                             </div>`
     let prevBtn = document.querySelector('#prevBtn');
@@ -117,8 +120,22 @@ function endGame(currentTurn, draw) {
     
     divAnnounce.innerText = draw ? `Draw!` : `Player ${currentTurn} wins!`;
 
-    // updateScore()
+    updateScore(currentTurn, draw)
     enableViewHistory()
+}
+
+function updateScore(currentTurn, draw) {
+    if (!draw) {
+        if (currentTurn === 'X') {
+            xScore++;
+            console.log(`X: ${xScore}`)
+            xScoreBoard.innerText = `${xScore}`
+        } else {
+            oScore++;
+            console.log(`O: ${oScore}`)
+            oScoreBoard.innerText = `${oScore}`
+        }
+    }
 }
 
 function checkDraw(currentTurn) {
