@@ -11,7 +11,9 @@ let moveCount = 0;
 let xScore = 0;
 let oScore = 0;
 let draw = false;
-let firstPlayer, secondPlayer = '';
+let firstPlayer = '';
+let secondPlayer = '';
+let winIndex = [];
 let boardState = [];
 const winningMoves = [
     // row
@@ -35,7 +37,6 @@ console.log(winningMoves)
 charBtns.forEach(button => {
     button.addEventListener('click', () => {
         setFirstPlayer(button);
-        // listen for each box
         toggleBoxes('enable')
     })
 })
@@ -58,15 +59,9 @@ function setFirstPlayer(button) {
 function resetGame() {
     console.log("RESET THE GAME!!!")
     location.reload()
-
-    // initParameters()
-    
-
-    // 
-
 }
 
-function userClickedBox(event) {
+function userClickedBox() {
     // check if box is already filled
     if (!(this.innerHTML === 'X' || this.innerHTML === 'O')) {
         this.innerHTML = moveCount % 2 === 0 ? firstPlayer : secondPlayer;
@@ -107,7 +102,9 @@ function checkWinner(moveCount) {
             let box1 = boxes[winningMoves[winCase][0]].innerText;
             let box2 = boxes[winningMoves[winCase][1]].innerText;
             let box3 = boxes[winningMoves[winCase][2]].innerText;
+            winIndex = [ winningMoves[winCase][0], winningMoves[winCase][1], winningMoves[winCase][2] ]
             if (box1 === currentTurn && box2 === currentTurn && box3 === currentTurn) {
+                winIndex = [ winningMoves[winCase][0], winningMoves[winCase][1], winningMoves[winCase][2] ]
                 return endGame(currentTurn, draw)
             }
         }
@@ -121,13 +118,23 @@ function checkWinner(moveCount) {
 
 function endGame(currentTurn, draw) {
     showHistoryButtons();
-
     toggleBoxes('disable')
-    
+    toggleWin('show')
     divAnnounce.innerText = draw ? `Draw!` : `Player ${currentTurn} wins!`;
+    console.log("Win Index:", winIndex)
 
     updateScore(currentTurn, draw)
     enableViewHistory()
+}
+
+function toggleWin(action) {
+    boxes.forEach((box, index) => {
+        winIndex.forEach(win => {
+            if (index === win) {
+                action === 'show' ? box.classList.add('winbox') : box.classList.remove('winbox')
+            }
+        })
+    })
 }
 
 function updateScore(currentTurn, draw) {
@@ -154,6 +161,7 @@ function checkDraw(currentTurn) {
 
     if (boxFilled === 9) {
         draw = true;
+        winIndex = [];
         return endGame(currentTurn, draw)
     }
 }
@@ -165,6 +173,7 @@ function enableViewHistory() {
 }
 
 function showPrev() {
+    toggleWin('hide')
     moveCount -= 1;
     console.log("Move count: ", moveCount, boardState.length)
     if(moveCount > 0) {
@@ -186,6 +195,7 @@ function showNext() {
     if (moveCount < boardState.length+1) {
         if (moveCount === boardState.length) {
             nextBtn.disabled = true;
+            toggleWin('show')
         }
         prevBtn.disabled = false;
         console.log("Move count: ", moveCount, boardState.length)
