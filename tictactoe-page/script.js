@@ -6,6 +6,7 @@ let charBtns = document.querySelectorAll('.char-btn');
 let startBtn = document.querySelector('#startBtn');
 let prevBtn = document.querySelector('#prevBtn');
 let nextBtn = document.querySelector('#nextBtn');
+let replayBtn = document.querySelector('#replay-game')
 let resetBtn = document.querySelector('#resetBtn');
 let divOptions = document.querySelector('#options');
 let divAnnounce = document.querySelector('#announce');
@@ -14,6 +15,7 @@ let oScoreBoard = document.querySelector('#oScore')
 
 /* EVENT LISTENERS */
 resetBtn.addEventListener('click', resetGame)
+replayBtn.addEventListener('click', playAgain)
 prevBtn.addEventListener('click', showPrev)
 nextBtn.addEventListener('click', showNext)
 startBtn.addEventListener('click', startGame)
@@ -45,8 +47,29 @@ const winningMoves = [
     [2, 4, 6]
 ];
 
+function playAgain() {
+    toggleClick('disable')
+    toggleWin('hide')
+    moveCount = 0;
+    draw = false;
+    firstPlayer = '';
+    secondPlayer = '';
+    currentTurn = '';
+    winIndices = [];
+    boardState = [];
+    moveHistory = [];
+    boxes.forEach(box => {
+        box.innerText = '';
+        box.classList.remove('xPink');
+        box.classList.remove('oCyan');
+    })
+    chooseModal.style.display = 'flex';
+    startGame()
+}
+
 function startGame() {
     // For now, game starts when user chooses a character (presses 'X' or 'O' button)
+    replayBtn.classList.add('hidden');
     startModal.style.display = 'none';
     charBtns.forEach(button => {
         button.addEventListener('click', () => {
@@ -252,6 +275,7 @@ function toggleWin(action) {
 
 // showHistoryButtons() : unhides the prevBtn and nextBtn and enables prevBtn
 function showHistoryButtons() {
+    replayBtn.classList.remove('hidden');
     prevBtn.classList.remove('hidden')
     nextBtn.classList.remove('hidden')
     prevBtn.disabled = false;
