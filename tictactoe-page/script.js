@@ -36,10 +36,7 @@ charBtns.forEach(button => {
     button.addEventListener('click', () => {
         setFirstPlayer(button);
         // listen for each box
-        boxes.forEach(box => {
-            box.classList.add("pointer")
-            box.addEventListener('click', userClickedBox)
-        })
+        toggleBoxes('enable')
     })
 })
 
@@ -48,18 +45,25 @@ function setFirstPlayer(button) {
     secondPlayer = firstPlayer === 'X' ? 'O' : 'X';
     divAnnounce.innerHTML = `${firstPlayer}'s turn`;
     divOptions.innerHTML = `<div id="history">
-                                <div class="prev">
-                                    <button class='char-move' id='prevBtn' disabled>◀</button>
-                                </div>
+                                
                                 <div class="reset">
                                     <button class='char-move' id='resetBtn'>⟳</button>
                                 </div>
-                                <div class="next">
-                                    <button class='char-move' id='nextBtn' disabled>▶</button>
-                                </div>
+                                
                             </div>`
-    let prevBtn = document.querySelector('#prevBtn');
-    let nextBtn = document.querySelector('#nextBtn');
+    let resetBtn = document.querySelector('#resetBtn');
+    resetBtn.addEventListener('click', resetGame)
+}
+
+function resetGame() {
+    console.log("RESET THE GAME!!!")
+    location.reload()
+
+    // initParameters()
+    
+
+    // 
+
 }
 
 function userClickedBox(event) {
@@ -116,10 +120,9 @@ function checkWinner(moveCount) {
 }
 
 function endGame(currentTurn, draw) {
-    boxes.forEach(box => {
-        box.removeEventListener('click', userClickedBox)
-        box.classList.remove("pointer")
-    })
+    showHistoryButtons();
+
+    toggleBoxes('disable')
     
     divAnnounce.innerText = draw ? `Draw!` : `Player ${currentTurn} wins!`;
 
@@ -205,4 +208,18 @@ function displayMove(moveHistory) {
         box.innerText = '';
         box.innerText = moves[index];
     })
+}
+
+function toggleBoxes(action) {
+    if (action === 'enable') {
+        boxes.forEach(box => {
+            box.classList.add("pointer")
+            box.addEventListener('click', userClickedBox)
+        })
+    } else if (action === 'disable') {
+        boxes.forEach(box => {
+            box.classList.remove("pointer")
+            box.removeEventListener('click', userClickedBox)
+        })
+    }
 }
