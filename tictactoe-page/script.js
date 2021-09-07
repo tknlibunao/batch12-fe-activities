@@ -23,7 +23,7 @@ let draw = false;
 let firstPlayer = '';
 let secondPlayer = '';
 let currentTurn = '';
-let winIndex = [];
+let winIndices = [];
 let boardState = [];
 let moveHistory = [];
 const winningMoves = [
@@ -51,16 +51,21 @@ charBtns.forEach(button => {
     })
 })
 
+// setFirstPlayer: designates who the first turn is according to the button pressed
 function setFirstPlayer(button) {
     firstPlayer = button.innerHTML;
     secondPlayer = firstPlayer === 'X' ? 'O' : 'X';
     divAnnounce.innerHTML = `${firstPlayer}'s turn`;
 }
 
+// resetGame: reloads current URL
 function resetGame() {
     location.reload()
 }
 
+// userClickedBox: checks if a clicked box is empty, if it is then
+//               : displays the current turn on box based on the moveCount,
+//               : saves that move, checks for win, and increments moveCount
 function userClickedBox() {
     if (!(this.innerHTML === 'X' || this.innerHTML === 'O')) {
         this.innerHTML = moveCount % 2 === 0 ? firstPlayer : secondPlayer;
@@ -73,6 +78,9 @@ function userClickedBox() {
     }
 }
 
+// saveMove() : each turn, iterates over the 9 boxes and checks the content
+//            : first stores each row in 3 different arrays, then pushes
+//            : those row arrays into the main boardState array
 function saveMove() {
     let row1 = []
     let row2 = []
@@ -91,6 +99,15 @@ function saveMove() {
     boardState.push([row1, row2, row3])
 }
 
+// checkWinner() : gets the currentTurn based on the current moveCount
+//               : first, iterates over the 9 boxes, then iterates and
+//               : gets the index of each case of win conditions stored
+//               : in the winningMoves array (8 cases in total)
+//               : for those corresponding group of 3 indices, get the
+//               : current content of the board/boxes and check if they
+//               : all match the currentTurn, in which case it is a WIN
+//               : if WIN, get winIndices and endGame()
+//               : otherwise, checkDraw()
 function checkWinner() {
     currentTurn = moveCount % 2 === 0 ? firstPlayer : secondPlayer;
 
@@ -101,24 +118,27 @@ function checkWinner() {
             let box3 = boxes[winningMoves[winCase][2]].innerText;
 
             if (box1 === currentTurn && box2 === currentTurn && box3 === currentTurn) {
-                winIndex = [ winningMoves[winCase][0], winningMoves[winCase][1], winningMoves[winCase][2] ]
+                winIndices = [ winningMoves[winCase][0], winningMoves[winCase][1], winningMoves[winCase][2] ]
                 return endGame()
             }
         }
     }
 
-    // if it reaches this, that means there is no winner yet therefore, check for draw
-    checkDraw()
+    checkDraw();
 }
 
+// endGame() : called when a WIN or a DRAW is declared
+//           : announces result, disables boxes click listener, highlights winning move
+//           : updates score and shows move history buttons
 function endGame() {
     divAnnounce.innerText = draw ? `Draw!` : `Player ${currentTurn} wins!`;
-    toggleClick('disable')
-    toggleWin('show')
-    updateScore()
+    toggleClick('disable');
+    toggleWin('show');
+    updateScore();
     showHistoryButtons();
 }
 
+// updateScore() : unless DRAW, displays the incremented score of the winner/currentTurn
 function updateScore() {
     if (!draw) {
         if (currentTurn === 'X') {
@@ -131,6 +151,10 @@ function updateScore() {
     }
 }
 
+// checkDraw() : called when a WIN is not yet declared after a turn
+//             : checks if the 9 boxes are already filled, in which
+//             : case, it is a DRAW therefore set draw to true, empty
+//             : winIndices array and endGame()
 function checkDraw() {
     let boxFilled = 0;
     boxes.forEach(box => {
@@ -139,11 +163,14 @@ function checkDraw() {
 
     if (boxFilled === 9) {
         draw = true;
-        winIndex = [];
+        winIndices = [];
         return endGame(currentTurn, draw)
     }
 }
 
+// showPrev() : fires when the prevBtn is clicked
+//            : decrements the moveCount and displays the desired
+//            : move history based on the moveCount
 function showPrev() {
     toggleWin('hide')
     moveCount -= 1;
@@ -157,6 +184,9 @@ function showPrev() {
     }
 }
 
+// showNext() : fires when the nextBtn is clicked
+//            : increments the moveCount and displays the desired
+//            : move history based on the moveCount
 function showNext() {
     moveCount += 1;
     if (moveCount < boardState.length+1) {
@@ -170,6 +200,7 @@ function showNext() {
     }
 }
 
+// displayMove() : updates the board into the desired move history based on the moveCount
 function displayMove() {
     let moves = [];
 
@@ -181,12 +212,15 @@ function displayMove() {
         })
     })
 
+    // reflect moves into each box
     boxes.forEach((box, index) => {
         box.innerText = '';
         box.innerText = moves[index];
     })
 }
 
+// toggleClick() : either adds/removes the box to the classlist .pointer
+//               : either adds/removes the box click event listener
 function toggleClick(action) {
     boxes.forEach(box => {
         action === 'enable' ? (box.classList.add("pointer"), box.addEventListener('click', userClickedBox))
@@ -194,9 +228,10 @@ function toggleClick(action) {
     })
 }
 
+// toggleWin() : highlights the boxes with corresponding winningIndices to indicate WIN
 function toggleWin(action) {
     boxes.forEach((box, index) => {
-        winIndex.forEach(win => {
+        winIndices.forEach(win => {
             if (index === win) {
                 action === 'show' ? box.classList.add('winbox') : box.classList.remove('winbox')
             }
@@ -204,6 +239,7 @@ function toggleWin(action) {
     })
 }
 
+// showHistoryButtons() : unhides the prevBtn and nextBtn and enables prevBtn
 function showHistoryButtons() {
     prevBtn.classList.remove('hidden')
     nextBtn.classList.remove('hidden')
