@@ -1,7 +1,9 @@
 /* DOM DECLARATIONS */
 let boxes = document.querySelectorAll('.box');
+let startModal = document.querySelector('.start-game')
 let modal = document.querySelector('.modal-container')
 let charBtns = document.querySelectorAll('.char-btn');
+let startBtn = document.querySelector('#startBtn');
 let prevBtn = document.querySelector('#prevBtn');
 let nextBtn = document.querySelector('#nextBtn');
 let resetBtn = document.querySelector('#resetBtn');
@@ -14,6 +16,7 @@ let oScoreBoard = document.querySelector('#oScore')
 resetBtn.addEventListener('click', resetGame)
 prevBtn.addEventListener('click', showPrev)
 nextBtn.addEventListener('click', showNext)
+startBtn.addEventListener('click', startGame)
 
 /* GAME PARAMETERS */
 let moveCount = 0;
@@ -42,15 +45,6 @@ const winningMoves = [
     [2, 4, 6]
 ];
 
-// For now, game starts when user chooses a character (presses 'X' or 'O' button)
-charBtns.forEach(button => {
-    button.addEventListener('click', () => {
-        modal.style.display = 'none';
-        setFirstPlayer(button);
-        toggleClick('enable');
-    })
-})
-
 // setFirstPlayer: designates who the first turn is according to the button pressed
 function setFirstPlayer(button) {
     firstPlayer = button.innerHTML;
@@ -69,6 +63,11 @@ function resetGame() {
 function userClickedBox() {
     if (!(this.innerHTML === 'X' || this.innerHTML === 'O')) {
         this.innerHTML = moveCount % 2 === 0 ? firstPlayer : secondPlayer;
+        if ((moveCount % 2 === 0 && firstPlayer === 'X') || (moveCount % 2 !== 0 && secondPlayer === 'X')) {
+            this.classList.add('xPink');
+        } else {
+            this.classList.add('oPurple')
+        }
         divAnnounce.innerHTML = moveCount % 2 === 0 ? `${secondPlayer}'s turn` : `${firstPlayer}'s turn`
         saveMove()
         checkWinner()
