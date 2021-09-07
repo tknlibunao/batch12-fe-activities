@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html {
@@ -104,7 +105,7 @@ body {
 
 .left, .right {
     width: 36vmin;
-    height: 8vmin;
+    height: 20vmin;
     margin-left: 1vmin;
     margin-right: 1vmin;
     border-radius: 5px;
@@ -131,7 +132,7 @@ body {
 
 button {
     width: 36vmin;
-    height: 8vmin;
+    height: 20vmin;
     border-radius: 5px;
     font-size: 4vmin;
     cursor: pointer;
@@ -147,4 +148,32 @@ button {
 
 .winbox {
     background-color: yellow;
+}
+
+.modal-container {
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+}
+
+h3{
+    color: white;
+}
+
+.modal {
+    width: 75vw;
+    height: 30vh;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
