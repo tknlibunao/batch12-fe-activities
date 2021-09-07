@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Delius+Unicase:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -6,13 +10,15 @@
 
 html {
     font-size: 7vmin!important;
-    font-family: 'Comfortaa';
-    color: #21313f;
+    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Delius Unicase', cursive; */
+    /* font-family: 'Averia Sans Libre', cursive; */
+    color: #FFE459;
 }
 
 body {
     /* background-color: rgba(132, 146, 182, 0.549); */
-    background-color: #485868;
+    background-color: #441159;
 }
 
 #main {
@@ -36,6 +42,7 @@ body {
 }
 
 #container {
+    /* background-color: red; */
     width: 75vmin;
     height: 87vmin;
     position: relative;
@@ -61,9 +68,14 @@ body {
 }
 
 #board {
+    background-color: #ffb84e;
+    width: 61vmin;
+    height: 61vmin;
+    border-radius: 10px;
     display: grid;
     grid-template-columns: repeat(3, 20vmin);
     grid-template-rows: repeat(3, 20vmin);
+    align-self: center;
     justify-content: center;
     align-content: center;
     /* box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, 
@@ -75,21 +87,47 @@ body {
 }
 
 .box {
+    background-color: rgb(101, 30, 136);
+    margin: 0.5vmin;
+    border-radius: 7px;
     display: grid;
     justify-content: center;
     align-content: center;
+    font-size: 12vmin;
+    text-shadow:rgba(44, 38, 38, 0.275) 0px 1px 2px, 
+                rgba(44, 38, 38, 0.275) 0px 2px 4px,
+                rgba(44, 38, 38, 0.275) 0px 4px 8px,
+                rgba(44, 38, 38, 0.275) 0px 8px 16px,
+                rgba(44, 38, 38, 0.275) 0px 16px 32px,
+                rgba(44, 38, 38, 0.275) 0px 32px 64px;
     /* cursor: pointer; */
 }
 
-#index-01, #index-11, #index-21 {
-    border-left: 0.5vmin solid white;
-    border-right: 0.5vmin solid white;
+/* #index-01, #index-11, #index-21 {
+    border-left: 0.25vmin dotted white;
+    border-right: 0.25vmin dotted white;
 }
 
 #index-10, #index-11, #index-12 {
-    border-top: 0.5vmin solid white;
-    border-bottom: 0.5vmin solid white;
+    border-top: 0.25vmin dotted white;
+    border-bottom: 0.25vmin dotted white;
+} */
+
+/* #index-00 {
+    border-top-left-radius: 7px;
 }
+
+#index-02 {
+    border-top-right-radius: 7px;
+}
+
+#index-20 {
+    border-bottom-left-radius: 7px;
+}
+
+#index-22 {
+    border-bottom-right-radius: 7px;
+} */
 
 #options, #history {
     width: 75vmin;
@@ -147,11 +185,30 @@ button {
 }
 
 .winbox {
-    background-color: yellow;
+    background-color: rgb(255, 231, 108);
+}
+
+.start-game {
+    background-color: #040427;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+}
+
+#startBtn {
+    width: 36vmin;
+    height: 10vmin;
 }
 
 .modal-container {
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: #040427e5;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -177,4 +234,12 @@ h3{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.xPink {
+    color: #FF449F;
+}
+
+.oPurple {
+    color: #00EAD3;
 }
