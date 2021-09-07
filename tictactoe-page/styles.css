@@ -5,7 +5,7 @@
 
 html {
     font-size: 7vmin!important;
-    font-family: 'Roboto';
+    font-family: 'Comfortaa';
     color: #21313f;
 }
 
@@ -75,17 +75,14 @@ body {
     /* cursor: pointer; */
 }
 
-#index-00, #index-01, #index-10, #index-11 {
-    border-right: 1vmin solid white;
-    border-bottom: 1vmin solid white;
+#index-01, #index-11, #index-21 {
+    border-left: 0.5vmin solid white;
+    border-right: 0.5vmin solid white;
 }
 
-#index-20, #index-21 {
-    border-right: 1vmin solid white;
-}
-
-#index-02, #index-12 {
-    border-bottom: 1vmin solid white;
+#index-10, #index-11, #index-12 {
+    border-top: 0.5vmin solid white;
+    border-bottom: 0.5vmin solid white;
 }
 
 #options, #history {
