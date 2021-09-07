@@ -9,16 +9,15 @@
 }
 
 html {
+    color: #FFE459;
     font-size: 7vmin!important;
     font-family: 'Poppins', sans-serif;
     /* font-family: 'Delius Unicase', cursive; */
     /* font-family: 'Averia Sans Libre', cursive; */
-    color: #FFE459;
 }
 
 body {
-    /* background-color: rgba(132, 146, 182, 0.549); */
-    background-color: #441159;
+    background-color: #d12358;
 }
 
 #main {
@@ -33,7 +32,6 @@ body {
 #title {
     width: 100vw;
     height: 10vh;
-    /* margin-top: 2vmin; */
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -42,7 +40,6 @@ body {
 }
 
 #container {
-    /* background-color: red; */
     width: 75vmin;
     height: 87vmin;
     position: relative;
@@ -50,12 +47,6 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-content: center;
-    /* box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 2px, 
-                rgba(0, 0, 0, 0.3) 0px 2px 4px,
-                rgba(0, 0, 0, 0.3) 0px 4px 8px,
-                rgba(0, 0, 0, 0.3) 0px 8px 16px,
-                rgba(0, 0, 0, 0.3) 0px 16px 32px,
-                rgba(0, 0, 0, 0.3) 0px 32px 64px; */
 }
 
 #announce {
@@ -71,63 +62,42 @@ body {
     background-color: #ffb84e;
     width: 61vmin;
     height: 61vmin;
-    border-radius: 10px;
     display: grid;
     grid-template-columns: repeat(3, 20vmin);
     grid-template-rows: repeat(3, 20vmin);
     align-self: center;
     justify-content: center;
     align-content: center;
-    /* box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, 
-                rgba(0, 0, 0, 0.07) 0px 2px 4px,
-                rgba(0, 0, 0, 0.07) 0px 4px 8px,
-                rgba(0, 0, 0, 0.07) 0px 8px 16px,
-                rgba(0, 0, 0, 0.07) 0px 16px 32px,
-                rgba(0, 0, 0, 0.07) 0px 32px 64px; */
+    border-radius: 2vmin;
+    box-shadow: rgba(0, 0, 0, 0.344) 0px 1px 2px, 
+                rgba(0, 0, 0, 0.344) 0px 2px 4px,
+                rgba(0, 0, 0, 0.344) 0px 4px 8px,
+                rgba(0, 0, 0, 0.344) 0px 8px 16px,
+                rgba(0, 0, 0, 0.344) 0px 16px 32px,
+                rgba(0, 0, 0, 0.344) 0px 32px 64px;
 }
 
 .box {
     background-color: rgb(101, 30, 136);
-    margin: 0.5vmin;
-    border-radius: 7px;
     display: grid;
     justify-content: center;
     align-content: center;
     font-size: 12vmin;
+    margin: 0.5vmin;
+    border-radius: 1vmin;
     text-shadow:rgba(44, 38, 38, 0.275) 0px 1px 2px, 
                 rgba(44, 38, 38, 0.275) 0px 2px 4px,
                 rgba(44, 38, 38, 0.275) 0px 4px 8px,
                 rgba(44, 38, 38, 0.275) 0px 8px 16px,
                 rgba(44, 38, 38, 0.275) 0px 16px 32px,
                 rgba(44, 38, 38, 0.275) 0px 32px 64px;
-    /* cursor: pointer; */
+    box-shadow: inset rgba(0, 0, 0, 0.120) 0px 1px 2px, 
+                inset rgba(0, 0, 0, 0.120) 0px 2px 4px,
+                inset rgba(0, 0, 0, 0.120) 0px 4px 8px,
+                inset rgba(0, 0, 0, 0.120) 0px 8px 16px,
+                inset rgba(0, 0, 0, 0.120) 0px 16px 32px,
+                inset rgba(0, 0, 0, 0.120) 0px 32px 64px;
 }
-
-/* #index-01, #index-11, #index-21 {
-    border-left: 0.25vmin dotted white;
-    border-right: 0.25vmin dotted white;
-}
-
-#index-10, #index-11, #index-12 {
-    border-top: 0.25vmin dotted white;
-    border-bottom: 0.25vmin dotted white;
-} */
-
-/* #index-00 {
-    border-top-left-radius: 7px;
-}
-
-#index-02 {
-    border-top-right-radius: 7px;
-}
-
-#index-20 {
-    border-bottom-left-radius: 7px;
-}
-
-#index-22 {
-    border-bottom-right-radius: 7px;
-} */
 
 #options, #history {
     width: 75vmin;
@@ -188,6 +158,10 @@ button {
     background-color: rgb(255, 231, 108);
 }
 
+.margin {
+    margin: 5vmin;
+}
+
 .start-game {
     background-color: #040427;
     width: 100vw;
@@ -207,6 +181,13 @@ button {
     height: 10vmin;
 }
 
+#replay-game {
+    cursor: pointer;
+    color: #fffcec;
+    text-align: center;
+    text-shadow:rgb(101, 30, 136) 1px 2px 1px;
+}
+
 .modal-container {
     background-color: #040427e5;
     width: 100vw;
@@ -222,7 +203,7 @@ button {
 }
 
 h3{
-    color: white;
+    color: #FFE459;
     text-align: center;
 }
 
@@ -240,6 +221,6 @@ h3{
     color: #FF449F;
 }
 
-.oPurple {
+.oCyan {
     color: #00EAD3;
 }
