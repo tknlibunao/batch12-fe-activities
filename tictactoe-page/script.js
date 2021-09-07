@@ -47,9 +47,14 @@ const winningMoves = [
     [2, 4, 6]
 ];
 
+// playAgain(): fires when PLAY AGAIN is clicked
+//            : basically like resetGame, but the X/O scores are not erased
+//            : and the Start Game Modal is skipped
 function playAgain() {
-    toggleClick('disable')
-    toggleWin('hide')
+    toggleClick('disable')  // disable box clicks    
+    toggleWin('hide')       // unhighlight win boxes
+
+    // initialize game parameters (except X/O scores)
     moveCount = 0;
     draw = false;
     firstPlayer = '';
@@ -58,11 +63,15 @@ function playAgain() {
     winIndices = [];
     boardState = [];
     moveHistory = [];
+
+    // initialize box content and classes
     boxes.forEach(box => {
         box.innerText = '';
         box.classList.remove('xPink');
         box.classList.remove('oCyan');
     })
+
+    // from here, go back to Choose First Turn scenario
     chooseModal.style.display = 'flex';
     startGame()
 }
