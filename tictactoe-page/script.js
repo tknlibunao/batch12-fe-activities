@@ -1,7 +1,7 @@
 /* DOM DECLARATIONS */
 let boxes = document.querySelectorAll('.box');
 let startModal = document.querySelector('.start-game')
-let modal = document.querySelector('.modal-container')
+let chooseModal = document.querySelector('.modal-container')
 let charBtns = document.querySelectorAll('.char-btn');
 let startBtn = document.querySelector('#startBtn');
 let prevBtn = document.querySelector('#prevBtn');
@@ -50,7 +50,7 @@ function startGame() {
     startModal.style.display = 'none';
     charBtns.forEach(button => {
         button.addEventListener('click', () => {
-            modal.style.display = 'none';
+            chooseModal.style.display = 'none';
             setFirstPlayer(button);
             toggleClick('enable');
         })
@@ -78,7 +78,7 @@ function userClickedBox() {
         if ((moveCount % 2 === 0 && firstPlayer === 'X') || (moveCount % 2 !== 0 && secondPlayer === 'X')) {
             this.classList.add('xPink');
         } else {
-            this.classList.add('oPurple')
+            this.classList.add('oCyan')
         }
         divAnnounce.innerHTML = moveCount % 2 === 0 ? `${secondPlayer}'s turn` : `${firstPlayer}'s turn`
         saveMove()
