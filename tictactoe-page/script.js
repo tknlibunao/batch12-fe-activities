@@ -1,4 +1,5 @@
 let boxes = document.querySelectorAll('.box');
+let modal = document.querySelector('.modal-container')
 let charBtns = document.querySelectorAll('.char-btn');
 let divOptions = document.querySelector('#options');
 let divAnnounce = document.querySelector('#announce');
@@ -35,6 +36,7 @@ const winningMoves = [
 // For now, game starts when user chooses a character (presses 'X' or 'O' button)
 charBtns.forEach(button => {
     button.addEventListener('click', () => {
+        modal.style.display = 'none';
         setFirstPlayer(button);
         toggleBoxes('enable')
     })
