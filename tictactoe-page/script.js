@@ -47,7 +47,7 @@ charBtns.forEach(button => {
     button.addEventListener('click', () => {
         modal.style.display = 'none';
         setFirstPlayer(button);
-        toggleBoxes('enable');
+        toggleClick('enable');
     })
 })
 
@@ -113,7 +113,7 @@ function checkWinner() {
 
 function endGame() {
     divAnnounce.innerText = draw ? `Draw!` : `Player ${currentTurn} wins!`;
-    toggleBoxes('disable')
+    toggleClick('disable')
     toggleWin('show')
     updateScore()
     showHistoryButtons();
@@ -172,6 +172,7 @@ function showNext() {
 
 function displayMove() {
     let moves = [];
+
     // store moveHistory into 1D array
     moveHistory = boardState[moveCount-1]
     moveHistory.forEach(row => {
@@ -186,10 +187,10 @@ function displayMove() {
     })
 }
 
-function toggleBoxes(action) {
+function toggleClick(action) {
     boxes.forEach(box => {
-        action === 'enable' ? box.classList.add("pointer") : box.classList.remove("pointer")
-        action === 'enable' ? box.addEventListener('click', userClickedBox) : box.removeEventListener('click', userClickedBox)
+        action === 'enable' ? (box.classList.add("pointer"), box.addEventListener('click', userClickedBox))
+                            : (box.classList.remove("pointer"), box.removeEventListener('click', userClickedBox))
     })
 }
 
