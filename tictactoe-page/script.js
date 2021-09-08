@@ -259,7 +259,6 @@ function displayMove() {
 
     // reflect moves into each box
     boxes.forEach((box, index) => {
-        box.innerText = '';
         box.innerText = moves[index];
     })
 }
