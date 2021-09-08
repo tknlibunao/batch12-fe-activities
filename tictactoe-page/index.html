@@ -11,27 +11,27 @@
     <main id="main">
         <div class="start-game">
             <div class="margin">
-                <h3><span class="oCyan">NOUGHTS</span>&<span class="xPink">CROSSES</span></h3>
+                <h3 id="main-title"><span class="oCyan noughts">NOUGHTS</span><span class="and"> & </span><span class="xPink crosses">CROSSES</span></h3>
             </div>
-            <div class="margin">
+            <div class="margin" id='hover'>
                 <button id='startBtn'>START GAME</button>
             </div>
         </div>
         <div class="modal-container">
             <h3>CHOOSE FIRST TURN</h3>
             <div class="modal">
-                <div class="left">
-                    <button class='char-btn'>X</button>
+                <div class="float">
+                    <button class='char-btn xPink'>X</button>
                 </div>
-                <div class="right">
-                    <button class='char-btn'>O</button>
+                <div class="float">
+                    <button class='char-btn oCyan'>O</button>
                 </div>
             </div>
         </div>
         <div id="title">
-            <div class="scoreboard">X: <span id="xScore">0</span></div>
+            <div class="scoreboard" id="xScore">0</div>
             <span id="replay-game">PLAY AGAIN?</span>
-            <div class="scoreboard">O: <span id="oScore">0</span></div>
+            <div class="scoreboard" id="oScore">0</div>
         </div>
         <div id="container">
             <div id="announce">
@@ -83,7 +83,7 @@
                         <button class='char-move hidden' id='prevBtn' disabled>◀</button>
                     </div>
                     <div class="reset">
-                        <button class='char-move' id='resetBtn'>⟳</button>
+                        <button class='char-move' id='resetBtn'>↻</button>
                     </div>
                     <div class="next">
                         <button class='char-move hidden' id='nextBtn' disabled>▶</button>
