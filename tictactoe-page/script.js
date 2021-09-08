@@ -174,7 +174,7 @@ function checkWinner() {
 //           : announces result, disables boxes click listener, highlights winning move
 //           : updates score and shows move history buttons
 function endGame() {
-    divAnnounce.innerText = draw ? `Draw!` : `Player ${currentTurn} wins!`;
+    divAnnounce.innerText = draw ? `Draw!` : `${currentTurn} wins!`;
     toggleClick('disable');
     toggleWin('show');
     updateScore();
