@@ -47,6 +47,35 @@ const winningMoves = [
     [2, 4, 6]
 ];
 
+/* FUNCTIONS */
+
+// resetGame: reloads current URL
+function resetGame() {
+    location.reload()
+}
+
+function startGame() {
+    // For now, game starts when user chooses a character (presses 'X' or 'O' button)
+    replayBtn.classList.add('hidden');
+    prevBtn.classList.add('hidden');
+    nextBtn.classList.add('hidden');
+    startModal.style.display = 'none';
+    charBtns.forEach(button => {
+        button.addEventListener('click', () => {
+            chooseModal.style.display = 'none';
+            setFirstPlayer(button);
+            toggleClick('enable');
+        })
+    })
+}
+
+// setFirstPlayer: designates who the first turn is according to the button pressed
+function setFirstPlayer(button) {
+    firstPlayer = button.innerHTML;
+    secondPlayer = firstPlayer === 'X' ? 'O' : 'X';
+    divAnnounce.innerHTML = `${firstPlayer}'s turn`;
+}
+
 // playAgain(): fires when PLAY AGAIN is clicked
 //            : basically like resetGame, but the X/O scores are not erased
 //            : and the Start Game Modal is skipped
@@ -74,33 +103,6 @@ function playAgain() {
     // from here, go back to Choose First Turn scenario
     chooseModal.style.display = 'flex';
     startGame()
-}
-
-function startGame() {
-    // For now, game starts when user chooses a character (presses 'X' or 'O' button)
-    replayBtn.classList.add('hidden');
-    prevBtn.classList.add('hidden');
-    nextBtn.classList.add('hidden');
-    startModal.style.display = 'none';
-    charBtns.forEach(button => {
-        button.addEventListener('click', () => {
-            chooseModal.style.display = 'none';
-            setFirstPlayer(button);
-            toggleClick('enable');
-        })
-    })
-}
-
-// setFirstPlayer: designates who the first turn is according to the button pressed
-function setFirstPlayer(button) {
-    firstPlayer = button.innerHTML;
-    secondPlayer = firstPlayer === 'X' ? 'O' : 'X';
-    divAnnounce.innerHTML = `${firstPlayer}'s turn`;
-}
-
-// resetGame: reloads current URL
-function resetGame() {
-    location.reload()
 }
 
 // userClickedBox: checks if a clicked box is empty, if it is then
@@ -172,30 +174,6 @@ function checkWinner() {
     checkDraw();
 }
 
-// endGame() : called when a WIN or a DRAW is declared
-//           : announces result, disables boxes click listener, highlights winning move
-//           : updates score and shows move history buttons
-function endGame() {
-    divAnnounce.innerText = draw ? `Draw!` : `${currentTurn} wins!`;
-    toggleClick('disable');
-    toggleWin('show');
-    updateScore();
-    showHistoryButtons();
-}
-
-// updateScore() : unless DRAW, displays the incremented score of the winner/currentTurn
-function updateScore() {
-    if (!draw) {
-        if (currentTurn === 'X') {
-            xScore++;
-            xScoreBoard.innerText = `${xScore}`
-        } else {
-            oScore++;
-            oScoreBoard.innerText = `${oScore}`
-        }
-    }
-}
-
 // checkDraw() : called when a WIN is not yet declared after a turn
 //             : checks if the 9 boxes are already filled, in which
 //             : case, it is a DRAW therefore set draw to true, empty
@@ -211,6 +189,58 @@ function checkDraw() {
         winIndices = [];
         return endGame(currentTurn, draw)
     }
+}
+
+// endGame() : called when a WIN or a DRAW is declared
+//           : announces result, disables boxes click listener, highlights winning move
+//           : updates score and shows move history buttons
+function endGame() {
+    divAnnounce.innerText = draw ? `Draw!` : `${currentTurn} wins!`;
+    toggleClick('disable');
+    toggleWin('show');
+    updateScore();
+    showHistoryButtons();
+}
+
+// toggleClick() : either adds/removes the box to the classlist .pointer
+//               : either adds/removes the box click event listener
+function toggleClick(action) {
+    boxes.forEach(box => {
+        action === 'enable' ? (box.classList.add("pointer"), box.addEventListener('click', userClickedBox))
+                            : (box.classList.remove("pointer"), box.removeEventListener('click', userClickedBox))
+    })
+}
+
+// toggleWin() : highlights the boxes with corresponding winningIndices to indicate WIN
+function toggleWin(action) {
+    boxes.forEach((box, index) => {
+        winIndices.forEach(win => {
+            if (index === win) {
+                action === 'show' ? box.classList.add('winbox') : box.classList.remove('winbox')
+            }
+        })
+    })
+}
+
+// updateScore() : unless DRAW, displays the incremented score of the winner/currentTurn
+function updateScore() {
+    if (!draw) {
+        if (currentTurn === 'X') {
+            xScore++;
+            xScoreBoard.innerText = `${xScore}`
+        } else {
+            oScore++;
+            oScoreBoard.innerText = `${oScore}`
+        }
+    }
+}
+
+// showHistoryButtons() : unhides the prevBtn and nextBtn and enables prevBtn
+function showHistoryButtons() {
+    replayBtn.classList.remove('hidden');
+    prevBtn.classList.remove('hidden')
+    nextBtn.classList.remove('hidden')
+    prevBtn.disabled = false;
 }
 
 // showPrev() : fires when the prevBtn is clicked
@@ -261,32 +291,4 @@ function displayMove() {
     boxes.forEach((box, index) => {
         box.innerText = moves[index];
     })
-}
-
-// toggleClick() : either adds/removes the box to the classlist .pointer
-//               : either adds/removes the box click event listener
-function toggleClick(action) {
-    boxes.forEach(box => {
-        action === 'enable' ? (box.classList.add("pointer"), box.addEventListener('click', userClickedBox))
-                            : (box.classList.remove("pointer"), box.removeEventListener('click', userClickedBox))
-    })
-}
-
-// toggleWin() : highlights the boxes with corresponding winningIndices to indicate WIN
-function toggleWin(action) {
-    boxes.forEach((box, index) => {
-        winIndices.forEach(win => {
-            if (index === win) {
-                action === 'show' ? box.classList.add('winbox') : box.classList.remove('winbox')
-            }
-        })
-    })
-}
-
-// showHistoryButtons() : unhides the prevBtn and nextBtn and enables prevBtn
-function showHistoryButtons() {
-    replayBtn.classList.remove('hidden');
-    prevBtn.classList.remove('hidden')
-    nextBtn.classList.remove('hidden')
-    prevBtn.disabled = false;
 }
