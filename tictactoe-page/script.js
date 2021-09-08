@@ -79,6 +79,8 @@ function playAgain() {
 function startGame() {
     // For now, game starts when user chooses a character (presses 'X' or 'O' button)
     replayBtn.classList.add('hidden');
+    prevBtn.classList.add('hidden');
+    nextBtn.classList.add('hidden');
     startModal.style.display = 'none';
     charBtns.forEach(button => {
         button.addEventListener('click', () => {
